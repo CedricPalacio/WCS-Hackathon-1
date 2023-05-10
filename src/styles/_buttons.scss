@@ -1,0 +1,282 @@
+@use "./colors" as *;
+@use "./typography" as *;
+@use "./shadows" as *;
+
+$buttons: (
+    sm: (
+        padding: 10px 16px,
+        gap: 8px,
+        text: sm,
+        i-font-size: 1.042rem,
+    ),
+    md: (
+        padding: 8px 14px,
+        gap: 8px,
+        text: sm,
+        i-font-size: 1.042rem,
+    ),
+    lg: (
+        padding: 10px 18px,
+        gap: 8px,
+        text: md,
+        i-font-size: 1.042rem,
+    ),
+    xl: (
+        padding: 12px 20px,
+        gap: 8px,
+        text: md,
+        i-font-size: 1.042rem,
+    ),
+    2xl: (
+        padding: 16px 28px,
+        gap: 12px,
+        text: lg,
+        i-font-size: 1.25rem,
+    ),
+);
+
+@mixin button($size, $color: "primary", $style: "solid") {
+    @if ($size != "sm" and $size != "md" and $size != "lg" and $size != "xl" and $size != "2xl") {
+        @error "Invalid button size: #{$size}";
+    }
+
+    @if ($style != "solid" and $style != "outline" and $style != "link") {
+        @error "Invalid button style: #{$style}";
+    }
+
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    text-decoration: none;
+
+    border: none;
+    cursor: pointer;
+    $button-size: map-get($buttons, $size);
+    @include text(map-get($button-size, text), $weight: 500);
+
+    @if ($style == "solid" or $style == "outline") {
+        padding: map-get($button-size, padding);
+        gap: map-get($button-size, gap);
+        i:only-child {
+            font-size: map-get($button-size, i-font-size);
+        }
+
+        @include shadow("xs");
+        border-radius: 8px;
+        @if ($style == "solid") {
+            color: $color-white;
+            @if ($color == "primary") {
+                background-color: $color-primary-600;
+                border: 1px solid $color-primary-600;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-primary-700;
+                }
+
+                &:focus {
+                    box-shadow: 0px 1px 2px rgba($color-grey-950, 0.05), 0px 0px 0px 4px $color-primary-100;
+                }
+                &:disabled {
+                    background-color: $color-primary-200;
+                    border: none;
+                    color: $color-white;
+                }
+            } @else if ($color == "black") {
+                background-color: $color-grey-900;
+                border: 1px solid $color-grey-900;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-grey-950;
+                }
+
+                &:focus {
+                    box-shadow: 0px 1px 2px rgba($color-grey-950, 0.05), 0px 0px 0px 4px $color-grey-100;
+                }
+                &:disabled {
+                    background-color: $color-grey-200;
+                    border: none;
+                    color: $color-white;
+                }
+            } @else if ($color == "error") {
+                background-color: $color-error-600;
+                border: 1px solid $color-error-600;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-error-700;
+                }
+
+                &:focus {
+                    box-shadow: 0px 1px 2px rgba($color-grey-950, 0.05), 0px 0px 0px 4px $color-error-100;
+                }
+                &:disabled {
+                    background-color: $color-error-200;
+                    border: none;
+                    color: $color-white;
+                }
+            } @else if ($color == "success") {
+                background-color: $color-success-600;
+                border: 1px solid $color-success-600;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-success-700;
+                }
+
+                &:focus {
+                    box-shadow: 0px 1px 2px rgba($color-grey-950, 0.05), 0px 0px 0px 4px $color-success-100;
+                }
+                &:disabled {
+                    background-color: $color-success-200;
+                    border: none;
+                    color: $color-white;
+                }
+            } @else if ($color == "warning") {
+                background-color: $color-warning-600;
+                border: 1px solid $color-warning-600;
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-warning-700;
+                }
+
+                &:focus {
+                    box-shadow: 0px 1px 2px rgba($color-grey-950, 0.05), 0px 0px 0px 4px $color-warning-100;
+                }
+                &:disabled {
+                    background-color: $color-warning-200;
+                    border: none;
+                    color: $color-white;
+                }
+            }
+        } @else if ($style == "outline") {
+            @if ($color == "primary") {
+                color: $color-primary-500;
+                border: 1px solid $color-primary-500;
+                background-color: transparent;
+
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-primary-500;
+                }
+                &:disabled {
+                    background-color: transparent;
+                    border: 1px solid $color-primary-200;
+                    color: $color-primary-300;
+                }
+            } @else if ($color == "black") {
+                color: $color-grey-900;
+                border: 1px solid $color-grey-900;
+                background-color: transparent;
+
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-grey-900;
+                }
+
+                &:disabled {
+                    background-color: transparent;
+                    border: 1px solid $color-grey-200;
+                    color: $color-grey-300;
+                }
+            } @else if ($color == "error") {
+                color: $color-error-500;
+                border: 1px solid $color-error-500;
+                background-color: transparent;
+
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-error-500;
+                }
+                &:disabled {
+                    background-color: transparent;
+                    border: 1px solid $color-error-200;
+                    color: $color-error-300;
+                }
+            } @else if ($color == "success") {
+                color: $color-success-500;
+                border: 1px solid $color-success-500;
+                background-color: transparent;
+
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-success-500;
+                }
+                &:disabled {
+                    background-color: transparent;
+                    border: 1px solid $color-success-200;
+                    color: $color-success-300;
+                }
+            } @else if ($color == "warning") {
+                color: $color-warning-500;
+                border: 1px solid $color-warning-500;
+                background-color: transparent;
+
+                &:hover {
+                    color: $color-white;
+                    background-color: $color-warning-500;
+                }
+                &:disabled {
+                    background-color: transparent;
+                    border: 1px solid $color-warning-200;
+                    color: $color-warning-300;
+                }
+            }
+        }
+    } @else if($style == "link") {
+        @if ($color == "primary") {
+            color: $color-primary-700;
+            background-color: transparent;
+
+            &:hover {
+                color: $color-primary-900;
+            }
+            &:disabled {
+                border-color: $color-grey-500;
+            }
+        } @else if ($color == "black") {
+            color: $color-grey-900;
+            background-color: transparent;
+
+            &:hover {
+                color: $color-grey-950;
+            }
+            &:disabled {
+                border-color: $color-grey-500;
+            }
+        } @else if ($color == "error") {
+            color: $color-error-700;
+            background-color: transparent;
+
+            &:hover {
+                color: $color-error-900;
+            }
+            &:disabled {
+                border-color: $color-grey-500;
+            }
+        } @else if ($color == "success") {
+            color: $color-success-700;
+            background-color: transparent;
+
+            &:hover {
+                color: $color-success-900;
+            }
+            &:disabled {
+                border-color: $color-grey-500;
+            }
+        } @else if ($color == "warning") {
+            color: $color-warning-700;
+            background-color: transparent;
+
+            &:hover {
+                color: $color-warning-900;
+            }
+            &:disabled {
+                border-color: $color-grey-500;
+            }
+        }
+    }
+}
+
+button {
+    @include button("md");
+}
