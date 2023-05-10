@@ -1,0 +1,14 @@
+@use "base";
+@use "typography";
+@use "colors";
+@use "shadows";
+@use "buttons";
+
+p {
+    @include shadows.shadow("2xl");
+    @include typography.title("xs");
+}
+
+.button {
+    @include buttons.button("sm", $color: "primary", $style: "solid");
+}
