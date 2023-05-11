@@ -5,13 +5,11 @@ import { useState } from "react";
 
 export default function SearchInputs({ setDepartureResult, setDestinationResult, departureResult, destinationResult }) {
 
-    const [departureErrorMessage, setDepartureErrorMessage] = useState("");
-
     
     return (
         <div className="search-inputs">
-            <LocationInput icon="geo" placeholder="De..." setResult={setDepartureResult} />
-            <LocationInput icon="airplane" placeholder="À..." setResult={setDestinationResult} />
+            <LocationInput icon="geo" placeholder="De..." setResult={setDepartureResult} result={departureResult}/>
+            <LocationInput icon="airplane" placeholder="À..." setResult={setDestinationResult} result={destinationResult} />
             {departureResult && destinationResult ? (
                 <Link to={`/results`}>
                     C'est parti <i className="bi bi-arrow-right" />
