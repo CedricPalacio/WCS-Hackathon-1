@@ -20,7 +20,7 @@ const Map = ({ startCoordinates, endCoordinates }) => {
     const distanceInKm = route.summary.totalDistance / 1000;
     setDistance(distanceInKm);
   };
-
+  // console.log(distanceInKm);
   return (
     <>
       <div className="mapContent">
