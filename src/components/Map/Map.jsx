@@ -22,7 +22,7 @@ const Map = ({ departureResult, destinationResult }) => {
     // console.log(distanceInKm);
     return (
         <>
-            <div className="mapContent">
+            <div className="mapContent" id="map">
                 <MapContainer center={[37.0902, -95.7129]} zoomLevel={5} zoomControl={false} style={{ height: "50vh", width: "100%", padding: 0 }} whenCreated={(map) => setMap(map)}>
                     <RoutingControl position={"topleft"} start={departureResult.coordinates} end={destinationResult.coordinates} color={"#0d9488"} onRoutesFound={handleRoutesFound} />
                     <LayersControl position="topright">
