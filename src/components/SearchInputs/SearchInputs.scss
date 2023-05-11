@@ -13,7 +13,7 @@
     @include shadow("md");
     border-radius: 0.5rem;
     border: 1px solid $color-grey-200;
-    button {
+    a {
         @include button("lg", $color: "primary", $style: "solid");
     }
 }

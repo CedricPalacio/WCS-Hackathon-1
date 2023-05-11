@@ -10,7 +10,7 @@ export default function LocationInput({ icon = "geo", placeholder, setResult }) 
     function handleInputBlur(event) {
         setTimeout(() => {
             setAreAPIResultsVisible(false);
-        }, 500); // Délai de 500 millisecondes
+        }, 100);
     }
 
     const getLocation = (value) => {

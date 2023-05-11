@@ -4,6 +4,9 @@
 @use "../../styles/buttons" as *;
 
 .location-input {
+    border: 1px solid $color-grey-200;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     flex: 1;
     display: flex;
     gap: 0.5rem;
@@ -11,6 +14,7 @@
     position: relative;
     i {
         font-size: 1.25rem;
+        color: $color-primary-500;
     }
     input {
         width: 100%;
@@ -33,6 +37,7 @@
 
     .location-selector {
         position: absolute;
+        z-index: 1;
         top: calc(100% + 1.25rem);
         left: 0;
         right: 0;

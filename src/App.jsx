@@ -6,15 +6,17 @@ import "./styles/index.scss";
 import { useState } from "react";
 
 function App() {
-    const [departureResult, setDepartureResult] = useState([]);
-    const [destinationResult, setDestinationResult] = useState([]);
+    const [departureResult, setDepartureResult] = useState("");
+    const [destinationResult, setDestinationResult] = useState("");
+    console.log("Departure :");
     console.log(departureResult);
+    console.log("Destination :");
     console.log(destinationResult);
     return (
         <>
             <Routes>
-                <Route path="/" element={<Home setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} />} />
-                <Route path="/Results" element={<Results />} />
+                <Route path="/" element={<Home setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult}  />} />
+                <Route path="/results" element={<Results  setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult} />} />
             </Routes>
         </>
     );
