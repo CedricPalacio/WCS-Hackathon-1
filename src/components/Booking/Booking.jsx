@@ -21,7 +21,7 @@ function Booking() {
   const restaurantsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -30,7 +30,7 @@ function Booking() {
 
   const hotelsOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -95,6 +95,11 @@ function Booking() {
               <div key={restaurant.fsq_id} className="restaurant-displayed">
                 <p>{restaurant.name}</p>
                 <p>{restaurant.location.formatted_address}</p>
+                <p>{restaurant.rating}</p>
+                <img
+                  src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
+                  alt="restaurant"
+                />
               </div>
             ))}
           </div>
@@ -106,6 +111,11 @@ function Booking() {
               <div key={hotel.fsq_id} className="hotel-displayed">
                 <p>{hotel.name}</p>
                 <p>{hotel.location.formatted_address}</p>
+                <p>{hotel.rating}</p>
+                <img
+                  src={`${hotel.photos[0].prefix}100x100${hotel.photos[0].suffix}`}
+                  alt="hotel"
+                />
               </div>
             ))}
           </div>

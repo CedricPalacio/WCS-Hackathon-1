@@ -7,7 +7,7 @@ function Events() {
   const coordinates = [43.6043, 1.4437];
 
   //defining event and landmarks results
-  const [eventResults, setRestaurantResults] = useState([]);
+  const [eventResults, setEventResults] = useState([]);
   const [landmarkResults, setLandmark] = useState([]);
 
   //two isloaded states for event and landmarks results
@@ -21,7 +21,7 @@ function Events() {
   const eventsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=14000&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=20000&categories=14000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -30,7 +30,7 @@ function Events() {
 
   const landmarksOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=16000&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -53,8 +53,7 @@ function Events() {
             },
           };
         });
-        setRestaurantResults(temporaryResults);
-        console.log(temporaryResults);
+        setEventResults(temporaryResults);
         setIsLoadedEvents(true);
       })
       .catch(function (error) {
@@ -77,6 +76,7 @@ function Events() {
             },
           };
         });
+        console.log(temporaryResults);
         setLandmark(temporaryResults);
         setIsLoadedLandmarks(true);
       })
@@ -96,17 +96,26 @@ function Events() {
               <div key={event.fsq_id} className="event-displayed">
                 <p>{event.name}</p>
                 <p>{event.location.formatted_address}</p>
+                <p>{event.description}</p>
+                <p>{event.tel}</p>
+                <p>{event.rating}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="hostels">
-          <h2>Landmarks</h2>
+          <h2>A voir</h2>
           <div className="hostels-list">
             {landmarkResults.map((landmark) => (
               <div key={landmark.fsq_id} className="landmark-displayed">
                 <p>{landmark.name}</p>
                 <p>{landmark.location.formatted_address}</p>
+                <p>{landmark.description}</p>
+                <p>{landmark.rating}</p>
+                <img
+                  src={`${landmark.photos[0].prefix}100x100${landmark.photos[0].suffix}`}
+                  alt="landmark"
+                />
               </div>
             ))}
           </div>
