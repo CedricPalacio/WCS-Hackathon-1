@@ -17,8 +17,14 @@
         height: 100%;
         border: none;
         outline: none;
+
         @include text("md");
-        color: $color-grey-900;
+        color: $color-grey-600;
+
+        &:focus {
+            outline: none;
+            color: $color-grey-900;
+        }
 
         &::placeholder {
             color: $color-grey-500;
@@ -46,11 +52,13 @@
             padding: 0.5rem;
             border-radius: 0.5rem;
             transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
             &:hover {
                 background-color: $color-primary-100;
-                color: $color-primary-700;
-                font-weight: 500;
-                
+                color: $color-primary-800;
             }
         }
     }

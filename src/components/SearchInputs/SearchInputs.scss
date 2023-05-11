@@ -3,8 +3,9 @@
 @use "../../styles/shadows" as *;
 @use "../../styles/buttons" as *;
 
-.search-inputs{
+.search-inputs {
     display: flex;
+    flex-direction: column;
     padding: 1rem;
     width: 100%;
     gap: 1rem;
@@ -12,8 +13,13 @@
     @include shadow("md");
     border-radius: 0.5rem;
     border: 1px solid $color-grey-200;
-    button{
+    button {
         @include button("lg", $color: "primary", $style: "solid");
+    }
+}
 
+@media screen and (min-width: 768px) {
+    .search-inputs {
+        flex-direction: row;
     }
 }
