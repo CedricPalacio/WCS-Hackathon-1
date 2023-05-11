@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Booking.scss";
 import axios from "axios";
+import StarRatings from "react-star-ratings";
 
 function Booking({ destinationResult }) {
   //defining restaurant and hotels results
@@ -107,7 +108,15 @@ function Booking({ destinationResult }) {
                         restaurant.location.formatted_address}
                     </p>
                     <div id="restaurant-rating-total-ratings">
-                      <p>{restaurant.rating}</p>
+                      <StarRatings
+                        rating={restaurant.rating / 2}
+                        starRatedColor="#f8ce0b"
+                        numberOfStars={5}
+                        name="rating"
+                        starDimension="20px"
+                        starSpacing="1px"
+                      />
+                      {/* <p>{restaurant.rating / 2}</p> */}
                       <p>
                         {restaurant.stats && restaurant.stats.total_ratings}
                       </p>
