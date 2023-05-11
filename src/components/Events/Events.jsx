@@ -46,7 +46,7 @@ function Events({ destinationResult }) {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [destinationResult]);
 
   if (isLoadedLandmarks) {
     return (
