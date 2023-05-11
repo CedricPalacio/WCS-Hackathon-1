@@ -59,7 +59,7 @@ function Booking({ destinationResult }) {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [destinationResult]);
 
   useEffect(() => {
     axios
@@ -83,7 +83,7 @@ function Booking({ destinationResult }) {
       .catch(function (error) {
         console.error(error);
       });
-  }, []);
+  }, [destinationResult]);
 
   if (isLoadedHotels && isLoadedRestaurants) {
     return (
