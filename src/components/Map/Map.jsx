@@ -43,9 +43,8 @@ const Map = ({ departureResult, destinationResult }) => {
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution=" Touriousity"
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
-                maxZoom={16}
+                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
               />
             </LayersControl.BaseLayer>
           </LayersControl>
