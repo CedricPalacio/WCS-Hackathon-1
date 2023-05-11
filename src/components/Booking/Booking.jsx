@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Booking.scss";
 import axios from "axios";
 
-function Booking() {
-  //coordinates of Toulouse city center
-  const coordinates = [43.6, 1.4333];
-
+function Booking({ destinationResult }) {
   //defining restaurant and hotels results
   const [restaurantResults, setRestaurantResults] = useState([]);
   const [hotelResults, setHotelResults] = useState([]);
@@ -21,7 +18,7 @@ function Booking() {
   const restaurantsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -30,7 +27,7 @@ function Booking() {
 
   const hotelsOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
