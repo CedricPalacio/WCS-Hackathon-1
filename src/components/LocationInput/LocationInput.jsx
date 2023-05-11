@@ -7,6 +7,12 @@ export default function LocationInput({ icon = "geo", placeholder, setResult }) 
     const [apiResults, setApiResults] = useState([]);
     const [areAPIResultsVisible, setAreAPIResultsVisible] = useState(false);
 
+    function handleInputBlur(event) {
+        setTimeout(() => {
+            setAreAPIResultsVisible(false);
+        }, 500); // Délai de 500 millisecondes
+    }
+
     const getLocation = (value) => {
         if (value.length >= 3) {
             setAreAPIResultsVisible(true);
@@ -34,11 +40,8 @@ export default function LocationInput({ icon = "geo", placeholder, setResult }) 
                 onFocus={(event) => {
                     setAreAPIResultsVisible(true);
                     getLocation(event.target.value);
-                    
                 }}
-                onBlur={() => {
-                    setAreAPIResultsVisible(false);
-                }}
+                onBlur={handleInputBlur}
             />
             {areAPIResultsVisible ? (
                 <ul className="location-selector">
@@ -46,21 +49,24 @@ export default function LocationInput({ icon = "geo", placeholder, setResult }) 
                         <li
                             key={result.properties.id}
                             onClick={() => {
+                                const { locality, region, macroregion, country } = result.properties;
                                 setResult({
                                     coordinates: result.geometry.coordinates.reverse(),
                                     city: {
-                                        name: result.properties.localadmin,
-                                        departement: result.properties.region,
-                                        region: result.properties.macroregion,
-                                        country: result.properties.country,
+                                        name: locality,
+                                        departement: region,
+                                        region: macroregion,
+                                        country: country,
                                     },
                                 });
-                                setValue(`${result.properties.locality}, ${result.properties.region}, ${result.properties.country}`);
+
+                                setValue(`${locality || ""}${locality && region ? ", " : ""}${region || ""}${(locality || region) && country ? ", " : ""}${country || ""}`);
+
                                 setAreAPIResultsVisible(false);
                             }}>
-                            {result.properties.locality ? `${result.properties.locality}, ` : null}
-                            {result.properties.region ? `${result.properties.region}, ` : null}
-                            {result.properties.country ? result.properties.country : null}
+                            {result.properties.locality ? `${result.properties.locality}, ` : ""}
+                            {result.properties.region ? `${result.properties.region}, ` : ""}
+                            {result.properties.country ? result.properties.country : ""}
                         </li>
                     ))}
                 </ul>
