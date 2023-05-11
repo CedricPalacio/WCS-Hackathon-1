@@ -38,4 +38,14 @@
     gap: 0.5rem;
 }
 
+.restaurants.hidden, .hotels.hidden {
+    display: none;
+}   
+
+#restaurants-hotels-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+}
 
