@@ -11,16 +11,19 @@ const maps = {
 
 const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
-  const [start, setStart] = useState([43, 1.433333]);
-  const [end, setEnd] = useState([48.72262900986691, 1.5878540993350367]);
+  const [start, setStart] = useState(departureResult.coordinates);
+  const [end, setEnd] = useState(destinationResult.coordinates);
   const [distance, setDistance] = useState(null);
+
+  console.log(departureResult);
+  console.log(destinationResult);
 
   const handleRoutesFound = (e) => {
     const route = e.routes[0];
     const distanceInKm = route.summary.totalDistance / 1000;
     setDistance(distanceInKm);
   };
-
+  // console.log(distanceInKm);
   return (
     <>
       <div className="mapContent">
@@ -40,8 +43,8 @@ const Map = ({ departureResult, destinationResult }) => {
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution="Touriosity"
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
               />
             </LayersControl.BaseLayer>
           </LayersControl>
