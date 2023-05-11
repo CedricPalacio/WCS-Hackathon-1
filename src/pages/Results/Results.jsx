@@ -4,12 +4,20 @@ import Booking from "../../components/Booking/Booking";
 import Map from "../../components/Map/Map";
 import Weather from "../../components/Weather/Weather";
 
-function Results({ setDepartureResult, setDestinationResult, departureResult, destinationResult }) {
+function Results({
+  setDepartureResult,
+  setDestinationResult,
+  departureResult,
+  destinationResult,
+}) {
   return (
     <div>
-      <Booking />
-      <Events />
-      <Map departureResult={departureResult} destinationResult={destinationResult} />
+      <Booking destinationResult={destinationResult} />
+      <Events destinationResult={destinationResult} />
+      <Map
+        departureResult={departureResult}
+        destinationResult={destinationResult}
+      />
       <Weather />
     </div>
   );

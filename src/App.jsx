@@ -6,16 +6,36 @@ import "./styles/index.scss";
 import { useState } from "react";
 
 function App() {
-    const [departureResult, setDepartureResult] = useState("");
-    const [destinationResult, setDestinationResult] = useState("");
-    return (
-        <>
-            <Routes>
-                <Route path="/" element={<Home setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult}  />} />
-                <Route path="/results" element={<Results  setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult} />} />
-            </Routes>
-        </>
-    );
+  const [departureResult, setDepartureResult] = useState("");
+  const [destinationResult, setDestinationResult] = useState("");
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              setDepartureResult={setDepartureResult}
+              setDestinationResult={setDestinationResult}
+              departureResult={departureResult}
+              destinationResult={destinationResult}
+            />
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <Results
+              setDepartureResult={setDepartureResult}
+              setDestinationResult={setDestinationResult}
+              departureResult={departureResult}
+              destinationResult={destinationResult}
+            />
+          }
+        />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
