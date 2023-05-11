@@ -9,38 +9,44 @@ const maps = {
   base: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 };
 
-const Map = () => {
+const Map = ({ startCoordinates, endCoordinates }) => {
   const [map, setMap] = useState(null);
-  const [start, setStart] = useState([43.6, 1.433333]);
-  const [end, setEnd] = useState([40.712784, -74.005941]);
+  const [start, setStart] = useState([43, 1.433333]);
+  const [end, setEnd] = useState([48.72262900986691, 1.5878540993350367]);
+  const [distance, setDistance] = useState(null);
+
+  const handleRoutesFound = (e) => {
+    const route = e.routes[0];
+    const distanceInKm = route.summary.totalDistance / 1000;
+    setDistance(distanceInKm);
+  };
 
   return (
     <>
       <div className="mapContent">
         <MapContainer
           center={[37.0902, -95.7129]}
-          zoom={3}
+          zoomLevel={5}
           zoomControl={false}
           style={{ height: "50vh", width: "100%", padding: 0 }}
           whenCreated={(map) => setMap(map)}>
-          {/* *************** */}
-          {/* Pass in our custom control layer here, inside of the map container */}
-          {/* *************** */}
           <RoutingControl
             position={"topleft"}
             start={start}
             end={end}
             color={"#757de8"}
+            onRoutesFound={handleRoutesFound}
           />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url={maps.base}
+                attribution="Touriosity"
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
               />
             </LayersControl.BaseLayer>
           </LayersControl>
         </MapContainer>
+        <div>{distance && <p>Distance: {distance} km</p>}</div>
       </div>
     </>
   );

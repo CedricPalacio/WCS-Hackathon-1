@@ -1,6 +1,7 @@
 .mapContent {
   height: 50vh;
   width: 50vw;
+  border: 2px solid red;
 }
 
 #root
@@ -10,8 +11,8 @@
   > div.leaflet-control-container
   > div.leaflet-top.leaflet-left
   > div {
-  height: 38px;
-  width: 200px;
+  height: 35px;
+  width: 140px;
   overflow: hidden;
   h2 {
     display: none;
@@ -23,5 +24,14 @@
 }
 
 .leaflet-routing-container h3 {
-  font-size: 14px;
+  font-size: 1px;
+}
+
+.leaflet-retina .leaflet-control-layers-toggle {
+  display: none;
+}
+.leaflet-routing-alt {
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
