@@ -85,7 +85,7 @@ function Events({ destinationResult }) {
 
   if (isLoadedLandmarks && isLoadedEvents) {
     return (
-      <div className="events-container">
+      <div className="events-container" id="events">
         {eventResults && Object.keys(eventResults).length !== 0 && (
           <div className="events">
             <h2>Events</h2>
