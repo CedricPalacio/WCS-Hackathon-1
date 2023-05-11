@@ -104,9 +104,9 @@ function Events({ destinationResult }) {
           </div>
         )}
         {landmarkResults && (
-          <div className="hostels">
+          <div className="landmarks">
             <h2>A voir</h2>
-            <div className="hostels-list">
+            <div className="landmarks-list">
               {landmarkResults.map((landmark) => (
                 <div key={landmark.fsq_id} className="landmark-displayed">
                   <p>{landmark.name}</p>
