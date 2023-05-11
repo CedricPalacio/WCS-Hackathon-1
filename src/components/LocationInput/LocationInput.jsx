@@ -18,7 +18,6 @@ export default function LocationInput({ icon = "geo", placeholder, setResult }) 
             setAreAPIResultsVisible(true);
             axios.get(`https://api.geocodify.com/v2/autocomplete?api_key=${import.meta.env.VITE_APP_GEOCODIFY_API_KEY}&q=${value}`).then((response) => {
                 setApiResults(response.data.response.features.splice(0, 3));
-                console.log(response.data.response.features);
             });
         } else {
             setApiResults([]);
