@@ -12,8 +12,8 @@ function Results({ setDepartureResult, setDestinationResult, departureResult, de
             <NavBar setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult} />
 
             <div className="container">
-                <Booking departureResult={departureResult} destinationResult={destinationResult} />
-                <Events departureResult={departureResult} destinationResult={destinationResult} />
+                <Booking destinationResult={destinationResult} />
+                <Events destinationResult={destinationResult} />
                 <Map departureResult={departureResult} destinationResult={destinationResult} />
                 <Weather />
             </div>
