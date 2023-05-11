@@ -4,12 +4,12 @@ import Booking from "../../components/Booking/Booking";
 import Map from "../../components/Map/Map";
 import Weather from "../../components/Weather/Weather";
 
-function Results() {
+function Results({ setDepartureResult, setDestinationResult, departureResult, destinationResult }) {
   return (
     <div>
       <Booking />
       <Events />
-      <Map />
+      <Map departureResult={departureResult} destinationResult={destinationResult} />
       <Weather />
     </div>
   );

@@ -53,6 +53,7 @@ function Events() {
             },
           };
         });
+        console.log(temporaryResults);
         setEventResults(temporaryResults);
         setIsLoadedEvents(true);
       })
@@ -76,6 +77,7 @@ function Events() {
             },
           };
         });
+        console.log(temporaryResults);
         setLandmark(temporaryResults);
         setIsLoadedLandmarks(true);
       })
