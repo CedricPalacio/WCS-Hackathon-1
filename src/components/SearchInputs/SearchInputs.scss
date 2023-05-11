@@ -1,0 +1,19 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/shadows" as *;
+@use "../../styles/buttons" as *;
+
+.search-inputs{
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    gap: 1rem;
+    align-items: stretch;
+    @include shadow("md");
+    border-radius: 0.5rem;
+    border: 1px solid $color-grey-200;
+    button{
+        @include button("lg", $color: "primary", $style: "solid");
+
+    }
+}
