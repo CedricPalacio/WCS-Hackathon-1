@@ -6,27 +6,31 @@ function Events() {
   //coordinates of Toulouse city center
   const coordinates = [43.6043, 1.4437];
 
-  //defining restaurant and hotels results
-  const [restaurantResults, setRestaurantResults] = useState([]);
-  const [hotelResults, setHotelResults] = useState([]);
+  //defining event and landmarks results
+  const [eventResults, setRestaurantResults] = useState([]);
+  const [landmarkResults, setLandmark] = useState([]);
+
+  //two isloaded states for event and landmarks results
+  const [isLoadedEvents, setIsLoadedEvents] = useState(false);
+  const [isLoadedLandmarks, setIsLoadedLandmarks] = useState(false);
 
   // defining the options for the request
 
-  //13065 category is for restaurants, 19014 for the hotels, we fetch results for the 5 best rated in a circle of 5km radius around given coordinates
+  //14000 category is for events, 16000 for the landmarks, we fetch results for the 5 best rated in a circle of 5km radius around given coordinates
 
-  const restaurantsOptions = {
+  const eventsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=14000&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
     },
   };
 
-  const hotelsOptions = {
+  const landmarksOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=16000&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -36,9 +40,22 @@ function Events() {
   //fetching the results from the API
   useEffect(() => {
     axios
-      .request(restaurantsOptions)
+      .request(eventsOptions)
       .then(function (response) {
-        setRestaurantResults(response.data.results);
+        const temporaryResults = response.data.results.map((event) => {
+          return {
+            ...event,
+            location: {
+              ...event.location,
+              formatted_address: event.location.formatted_address
+                .replace(/\\u0026/g, "&")
+                .replace(/\\u00e9s/g, "és"),
+            },
+          };
+        });
+        setRestaurantResults(temporaryResults);
+        console.log(temporaryResults);
+        setIsLoadedEvents(true);
       })
       .catch(function (error) {
         console.error(error);
@@ -47,9 +64,21 @@ function Events() {
 
   useEffect(() => {
     axios
-      .request(hotelsOptions)
+      .request(landmarksOptions)
       .then(function (response) {
-        setHotelResults(response.data.results);
+        const temporaryResults = response.data.results.map((landmark) => {
+          return {
+            ...landmark,
+            location: {
+              ...landmark.location,
+              formatted_address: landmark.location.formatted_address
+                .replace(/\\u0026/g, "&")
+                .replace(/\\u00e9s/g, "és"),
+            },
+          };
+        });
+        setLandmark(temporaryResults);
+        setIsLoadedLandmarks(true);
       })
       .catch(function (error) {
         console.error(error);
@@ -57,28 +86,33 @@ function Events() {
   }, []);
 
   return (
-    <div className="events-container">
-      <div className="restaurants">
-        <h2>Restaurants</h2>
-        <div className="restaurants-list">
-          {restaurantResults.map((restaurant) => (
-            <div key={restaurant.fsq_id} className="restaurant-displayed">
-              <p>{restaurant.name}</p>
-            </div>
-          ))}
+    isLoadedLandmarks &&
+    isLoadedEvents && (
+      <div className="events-container">
+        <div className="events">
+          <h2>Events</h2>
+          <div className="events-list">
+            {eventResults.map((event) => (
+              <div key={event.fsq_id} className="event-displayed">
+                <p>{event.name}</p>
+                <p>{event.location.formatted_address}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="hostels">
+          <h2>Landmarks</h2>
+          <div className="hostels-list">
+            {landmarkResults.map((landmark) => (
+              <div key={landmark.fsq_id} className="landmark-displayed">
+                <p>{landmark.name}</p>
+                <p>{landmark.location.formatted_address}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="hostels">
-        <h2>Hotels</h2>
-        <div className="hostels-list">
-          {hotelResults.map((hotel) => (
-            <div key={hotel.fsq_id} className="hotel-displayed">
-              <p>{hotel.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    )
   );
 }
 
