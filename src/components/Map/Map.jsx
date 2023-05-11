@@ -43,7 +43,7 @@ const Map = ({ departureResult, destinationResult }) => {
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                attribution="Touriosity"
                 url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
               />
             </LayersControl.BaseLayer>
