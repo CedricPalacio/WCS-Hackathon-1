@@ -112,9 +112,9 @@ function Booking({ destinationResult }) {
           </div>
         )}
         {hotelResults && (
-          <div className="hostels">
+          <div className="hotels">
             <h2>Hotels</h2>
-            <div className="hostels-list">
+            <div className="hotels-list">
               {hotelResults.map((hotel) => (
                 <div key={hotel.fsq_id} className="hotel-displayed">
                   <p>{hotel.name}</p>
