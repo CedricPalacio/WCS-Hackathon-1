@@ -1,0 +1,27 @@
+@use "./src/styles/typography" as *;
+
+#weather{
+    h2{
+        @include title("md");
+        text-align: center;
+    }
+    h3{
+        @include title("sm");
+        text-align: center;
+    }
+    .weatherNowCity{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        h4{
+            @include text("md")
+        }
+
+        img{
+            height: 80px;
+            width: 80px;
+        }
+    }
+}
