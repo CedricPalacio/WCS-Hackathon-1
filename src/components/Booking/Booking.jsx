@@ -87,6 +87,7 @@ function Booking({ destinationResult }) {
   if (isLoadedHotels && isLoadedRestaurants) {
     return (
       <div className="booking-container" id="booking">
+        <h2 id="booking-title">Où dormir / Manger ?</h2>
         {restaurantResults && (
           <div className="restaurants">
             <h2>Restaurants</h2>
@@ -95,17 +96,23 @@ function Booking({ destinationResult }) {
                 <div key={restaurant.fsq_id} className="restaurant-displayed">
                   {restaurant.photos && restaurant.photos[0] && (
                     <img
-                      src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
+                      src={`${restaurant.photos[0].prefix}300x300${restaurant.photos[0].suffix}`}
                       alt="restaurant"
                     />
                   )}
-                  <p>{restaurant.name}</p>
-                  <p>
-                    {restaurant.location &&
-                      restaurant.location.formatted_address}
-                  </p>
-                  <p>{restaurant.rating}</p>
-                  <p>{restaurant.stats && restaurant.stats.total_ratings}</p>
+                  <div id="restaurant-name-location-rating">
+                    <h3>{restaurant.name}</h3>
+                    <p>
+                      {restaurant.location &&
+                        restaurant.location.formatted_address}
+                    </p>
+                    <div id="restaurant-rating-total-ratings">
+                      <p>{restaurant.rating}</p>
+                      <p>
+                        {restaurant.stats && restaurant.stats.total_ratings}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -123,7 +130,7 @@ function Booking({ destinationResult }) {
                   <p>{hotel.stats && hotel.stats.total_ratings}</p>
                   {hotel.photos && hotel.photos[0] && (
                     <img
-                      src={`${hotel.photos[0].prefix}100x100${hotel.photos[0].suffix}`}
+                      src={`${hotel.photos[0].prefix}300x300${hotel.photos[0].suffix}`}
                       alt="hotel"
                     />
                   )}

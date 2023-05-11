@@ -118,7 +118,7 @@ function Events({ destinationResult }) {
                   <p>{landmark.stats && landmark.stats.total_ratings}</p>
                   {landmark.photos && landmark.photos[0] && (
                     <img
-                      src={`${landmark.photos[0].prefix}100x100${landmark.photos[0].suffix}`}
+                      src={`${landmark.photos[0].prefix}300x300${landmark.photos[0].suffix}`}
                       alt="landmark"
                     />
                   )}

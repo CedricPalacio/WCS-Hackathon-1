@@ -1,7 +1,35 @@
-.restaurant-displayed img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+.booking-container img {
+    width: 100px;
+    height: auto;
+    border-radius: 15px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.restaurants {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.restaurant-displayed {
+    display :flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin: 12px;
+}
+
+
+#restaurant-name-location-rating {
+    display: flex;
+    flex-direction: column;
+}
+
+#restaurant-rating-total-ratings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
 }
