@@ -1,0 +1,41 @@
+#results {
+    margin-top: 6rem;
+    .container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+    }
+
+    @media screen and (min-width: 576px) {
+        .container {
+            max-width: 540px;
+            padding: 1rem;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .container {
+            max-width: 720px;
+            padding: 2rem;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .container {
+            max-width: 960px;
+            padding: 2rem;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+            padding: 2rem;
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        .container {
+            max-width: 1320px;
+            padding: 2rem;
+        }
+    }
+}
