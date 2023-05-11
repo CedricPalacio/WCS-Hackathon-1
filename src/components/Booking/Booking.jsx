@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Booking.scss";
 import axios from "axios";
+import StarRatings from "react-star-ratings";
 
 function Booking({ destinationResult }) {
   //defining restaurant and hotels results
@@ -87,46 +88,72 @@ function Booking({ destinationResult }) {
   if (isLoadedHotels && isLoadedRestaurants) {
     return (
       <div className="booking-container" id="booking">
+        <h2 id="booking-title">Où dormir / Manger ?</h2>
         {restaurantResults && (
           <div className="restaurants">
             <h2>Restaurants</h2>
             <div className="restaurants-list">
               {restaurantResults.map((restaurant) => (
                 <div key={restaurant.fsq_id} className="restaurant-displayed">
-                  <p>{restaurant.name}</p>
-                  <p>
-                    {restaurant.location &&
-                      restaurant.location.formatted_address}
-                  </p>
-                  <p>{restaurant.rating}</p>
-                  <p>{restaurant.stats && restaurant.stats.total_ratings}</p>
                   {restaurant.photos && restaurant.photos[0] && (
                     <img
-                      src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
+                      src={`${restaurant.photos[0].prefix}300x300${restaurant.photos[0].suffix}`}
                       alt="restaurant"
                     />
                   )}
+                  <div id="restaurant-name-location-rating">
+                    <h3>{restaurant.name}</h3>
+                    <p>
+                      {restaurant.location &&
+                        restaurant.location.formatted_address}
+                    </p>
+                    <div id="restaurant-rating-total-ratings">
+                      <StarRatings
+                        rating={restaurant.rating / 2}
+                        starRatedColor="#f8ce0b"
+                        numberOfStars={5}
+                        name="rating"
+                        starDimension="20px"
+                        starSpacing="1px"
+                      />
+                      {/* <p>{restaurant.rating / 2}</p> */}
+                      <p>
+                        {restaurant.stats && restaurant.stats.total_ratings}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         )}
         {hotelResults && (
-          <div className="hostels">
+          <div className="hotels">
             <h2>Hotels</h2>
-            <div className="hostels-list">
+            <div className="hotels-list">
               {hotelResults.map((hotel) => (
                 <div key={hotel.fsq_id} className="hotel-displayed">
-                  <p>{hotel.name}</p>
-                  <p>{hotel.location && hotel.location.formatted_address}</p>
-                  <p>{hotel.rating}</p>
-                  <p>{hotel.stats && hotel.stats.total_ratings}</p>
                   {hotel.photos && hotel.photos[0] && (
                     <img
-                      src={`${hotel.photos[0].prefix}100x100${hotel.photos[0].suffix}`}
+                      src={`${hotel.photos[0].prefix}300x300${hotel.photos[0].suffix}`}
                       alt="hotel"
                     />
                   )}
+                  <div id="hotel-name-location-rating">
+                    <h3>{hotel.name}</h3>
+                    <p>{hotel.location && hotel.location.formatted_address}</p>
+                    <div id="hotel-rating-total-ratings">
+                      <StarRatings
+                        rating={hotel.rating / 2}
+                        starRatedColor="#f8ce0b"
+                        numberOfStars={5}
+                        name="rating"
+                        starDimension="20px"
+                        starSpacing="1px"
+                      />
+                      <p>{hotel.stats && hotel.stats.total_ratings}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>

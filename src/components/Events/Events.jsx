@@ -80,48 +80,55 @@ function Events({ destinationResult }) {
             });
     }, []);
 
-    if (isLoadedLandmarks && isLoadedEvents) {
-        return (
-            <div className="events-container" id="events">
-                {eventResults && Object.keys(eventResults).length !== 0 && (
-                    <div className="events">
-                        <h2>Events</h2>
-                        <div className="events-list">
-                            {eventResults.map((event) => (
-                                <div key={event.fsq_id} className="event-displayed">
-                                    <p>{event.name}</p>
-                                    <p>{event.location && event.location.formatted_address}</p>
-                                    <p>{event.description}</p>
-                                    <p>{event.tel}</p>
-                                    <p>{event.rating}</p>
-                                    <p>{event.stats && event.stats.total_ratings}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-                {landmarkResults && (
-                    <div className="landmarks">
-                        <h2>A voir</h2>
-                        <div className="landmarks-list">
-                            {landmarkResults.map((landmark) => (
-                                <div key={landmark.fsq_id} className="landmark-displayed">
-                                    <p>{landmark.name}</p>
-                                    <p>{landmark.location && landmark.location.formatted_address}</p>
-                                    <p>{landmark.description}</p>
-                                    <p>{landmark.rating}</p>
-                                    <p>{landmark.stats && landmark.stats.total_ratings}</p>
-                                    {landmark.photos && landmark.photos[0] && <img src={`${landmark.photos[0].prefix}100x100${landmark.photos[0].suffix}`} alt="landmark" />}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+  if (isLoadedLandmarks && isLoadedEvents) {
+    return (
+      <div className="events-container" id="events">
+        {eventResults && Object.keys(eventResults).length !== 0 && (
+          <div className="events">
+            <h2>Events</h2>
+            <div className="events-list">
+              {eventResults.map((event) => (
+                <div key={event.fsq_id} className="event-displayed">
+                  <p>{event.name}</p>
+                  <p>{event.location && event.location.formatted_address}</p>
+                  <p>{event.description}</p>
+                  <p>{event.tel}</p>
+                  <p>{event.rating}</p>
+                  <p>{event.stats && event.stats.total_ratings}</p>
+                </div>
+              ))}
             </div>
-        );
-    } else {
-        return null;
-    }
+          </div>
+        )}
+        {landmarkResults && (
+          <div className="landmarks">
+            <h2>A voir</h2>
+            <div className="landmarks-list">
+              {landmarkResults.map((landmark) => (
+                <div key={landmark.fsq_id} className="landmark-displayed">
+                  <p>{landmark.name}</p>
+                  <p>
+                    {landmark.location && landmark.location.formatted_address}
+                  </p>
+                  <p>{landmark.description}</p>
+                  <p>{landmark.rating}</p>
+                  <p>{landmark.stats && landmark.stats.total_ratings}</p>
+                  {landmark.photos && landmark.photos[0] && (
+                    <img
+                      src={`${landmark.photos[0].prefix}300x300${landmark.photos[0].suffix}`}
+                      alt="landmark"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Events;
