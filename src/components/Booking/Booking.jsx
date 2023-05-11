@@ -88,10 +88,30 @@ function Booking({ destinationResult }) {
   if (isLoadedHotels && isLoadedRestaurants) {
     return (
       <div className="booking-container" id="booking">
-        <h2 id="booking-title">Où dormir / Manger ?</h2>
+        <h2 id="booking-title">Où manger / dormir ?</h2>
+        <div id="restaurants-hotels-buttons">
+          {/* two buttons, one for restaurants, one for hotels. if restaurants button is clicked, hotels classname div is not displayed. if hotels button is clicked, restaurants classname div is not displayed */}
+          <button
+            className="restaurants-button"
+            onClick={() => {
+              document.querySelector(".restaurants").classList.remove("hidden");
+              document.querySelector(".hotels").classList.add("hidden");
+            }}
+          >
+            Restaurants
+          </button>
+          <button
+            className="hotels-button"
+            onClick={() => {
+              document.querySelector(".restaurants").classList.add("hidden");
+              document.querySelector(".hotels").classList.remove("hidden");
+            }}
+          >
+            Hôtels
+          </button>
+        </div>
         {restaurantResults && (
           <div className="restaurants">
-            <h2>Restaurants</h2>
             <div className="restaurants-list">
               {restaurantResults.map((restaurant) => (
                 <div key={restaurant.fsq_id} className="restaurant-displayed">
@@ -135,8 +155,7 @@ function Booking({ destinationResult }) {
           </div>
         )}
         {hotelResults && (
-          <div className="hotels">
-            <h2>Hotels</h2>
+          <div className="hotels hidden">
             <div className="hotels-list">
               {hotelResults.map((hotel) => (
                 <div key={hotel.fsq_id} className="hotel-displayed">
