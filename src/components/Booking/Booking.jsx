@@ -93,6 +93,12 @@ function Booking({ destinationResult }) {
             <div className="restaurants-list">
               {restaurantResults.map((restaurant) => (
                 <div key={restaurant.fsq_id} className="restaurant-displayed">
+                  {restaurant.photos && restaurant.photos[0] && (
+                    <img
+                      src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
+                      alt="restaurant"
+                    />
+                  )}
                   <p>{restaurant.name}</p>
                   <p>
                     {restaurant.location &&
@@ -100,12 +106,6 @@ function Booking({ destinationResult }) {
                   </p>
                   <p>{restaurant.rating}</p>
                   <p>{restaurant.stats && restaurant.stats.total_ratings}</p>
-                  {restaurant.photos && restaurant.photos[0] && (
-                    <img
-                      src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
-                      alt="restaurant"
-                    />
-                  )}
                 </div>
               ))}
             </div>
