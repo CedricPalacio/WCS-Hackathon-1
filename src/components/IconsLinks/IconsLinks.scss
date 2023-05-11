@@ -9,8 +9,9 @@
         ul {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
             li {
-                flex-basis: 100%;
+                flex: 1;
                 a {
                     display: flex;
                     flex-direction: column;
