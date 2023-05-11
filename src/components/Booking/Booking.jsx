@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Booking() {
   //coordinates of Toulouse city center
-  const coordinates = [43.6043, 1.4437];
+  const coordinates = [43.6, 1.4333];
 
   //defining restaurant and hotels results
   const [restaurantResults, setRestaurantResults] = useState([]);
@@ -21,7 +21,7 @@ function Booking() {
   const restaurantsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -30,7 +30,7 @@ function Booking() {
 
   const hotelsOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${coordinates[0]}%2C${coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -43,6 +43,7 @@ function Booking() {
       .request(restaurantsOptions)
       .then(function (response) {
         const temporaryResults = response.data.results.map((restaurant) => {
+          // removing
           return {
             ...restaurant,
             location: {
@@ -84,45 +85,59 @@ function Booking() {
       });
   }, []);
 
-  return (
-    isLoadedHotels &&
-    isLoadedRestaurants && (
+  if (isLoadedHotels && isLoadedRestaurants) {
+    return (
       <div className="booking-container">
-        <div className="restaurants">
-          <h2>Restaurants</h2>
-          <div className="restaurants-list">
-            {restaurantResults.map((restaurant) => (
-              <div key={restaurant.fsq_id} className="restaurant-displayed">
-                <p>{restaurant.name}</p>
-                <p>{restaurant.location.formatted_address}</p>
-                <p>{restaurant.rating}</p>
-                <img
-                  src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
-                  alt="restaurant"
-                />
-              </div>
-            ))}
+        {restaurantResults && (
+          <div className="restaurants">
+            <h2>Restaurants</h2>
+            <div className="restaurants-list">
+              {restaurantResults.map((restaurant) => (
+                <div key={restaurant.fsq_id} className="restaurant-displayed">
+                  <p>{restaurant.name}</p>
+                  <p>
+                    {restaurant.location &&
+                      restaurant.location.formatted_address}
+                  </p>
+                  <p>{restaurant.rating}</p>
+                  <p>{restaurant.stats && restaurant.stats.total_ratings}</p>
+                  {restaurant.photos && restaurant.photos[0] && (
+                    <img
+                      src={`${restaurant.photos[0].prefix}100x100${restaurant.photos[0].suffix}`}
+                      alt="restaurant"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="hostels">
-          <h2>Hotels</h2>
-          <div className="hostels-list">
-            {hotelResults.map((hotel) => (
-              <div key={hotel.fsq_id} className="hotel-displayed">
-                <p>{hotel.name}</p>
-                <p>{hotel.location.formatted_address}</p>
-                <p>{hotel.rating}</p>
-                <img
-                  src={`${hotel.photos[0].prefix}100x100${hotel.photos[0].suffix}`}
-                  alt="hotel"
-                />
-              </div>
-            ))}
+        )}
+        {hotelResults && (
+          <div className="hostels">
+            <h2>Hotels</h2>
+            <div className="hostels-list">
+              {hotelResults.map((hotel) => (
+                <div key={hotel.fsq_id} className="hotel-displayed">
+                  <p>{hotel.name}</p>
+                  <p>{hotel.location && hotel.location.formatted_address}</p>
+                  <p>{hotel.rating}</p>
+                  <p>{hotel.stats && hotel.stats.total_ratings}</p>
+                  {hotel.photos && hotel.photos[0] && (
+                    <img
+                      src={`${hotel.photos[0].prefix}100x100${hotel.photos[0].suffix}`}
+                      alt="hotel"
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-    )
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Booking;
