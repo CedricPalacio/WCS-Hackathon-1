@@ -11,9 +11,12 @@ const maps = {
 
 const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
-  const [start, setStart] = useState([43, 1.433333]);
-  const [end, setEnd] = useState([48.72262900986691, 1.5878540993350367]);
+  const [start, setStart] = useState(departureResult.coordinates);
+  const [end, setEnd] = useState(destinationResult.coordinates);
   const [distance, setDistance] = useState(null);
+
+  console.log(departureResult);
+  console.log(destinationResult);
 
   const handleRoutesFound = (e) => {
     const route = e.routes[0];
@@ -40,8 +43,9 @@ const Map = ({ departureResult, destinationResult }) => {
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution="Touriosity"
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                attribution=" Touriousity"
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}"
+                maxZoom={16}
               />
             </LayersControl.BaseLayer>
           </LayersControl>
