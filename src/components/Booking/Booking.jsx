@@ -95,9 +95,14 @@ function Booking({ destinationResult }) {
             <div className="restaurants-list">
               {restaurantResults.map((restaurant) => (
                 <div key={restaurant.fsq_id} className="restaurant-displayed">
-                  {restaurant.photos && restaurant.photos[0] && (
+                  {restaurant.photos && restaurant.photos[0] ? (
                     <img
                       src={`${restaurant.photos[0].prefix}300x300${restaurant.photos[0].suffix}`}
+                      alt="restaurant"
+                    />
+                  ) : (
+                    <img
+                      src="../../assets/Booking/restaurant.jpeg"
                       alt="restaurant"
                     />
                   )}
@@ -108,14 +113,16 @@ function Booking({ destinationResult }) {
                         restaurant.location.formatted_address}
                     </p>
                     <div id="restaurant-rating-total-ratings">
-                      <StarRatings
-                        rating={restaurant.rating / 2}
-                        starRatedColor="#f8ce0b"
-                        numberOfStars={5}
-                        name="rating"
-                        starDimension="20px"
-                        starSpacing="1px"
-                      />
+                      {restaurant.rating && (
+                        <StarRatings
+                          rating={restaurant.rating / 2}
+                          starRatedColor="#f8ce0b"
+                          numberOfStars={5}
+                          name="rating"
+                          starDimension="20px"
+                          starSpacing="1px"
+                        />
+                      )}
                       {/* <p>{restaurant.rating / 2}</p> */}
                       <p>
                         {restaurant.stats && restaurant.stats.total_ratings}
@@ -133,24 +140,28 @@ function Booking({ destinationResult }) {
             <div className="hotels-list">
               {hotelResults.map((hotel) => (
                 <div key={hotel.fsq_id} className="hotel-displayed">
-                  {hotel.photos && hotel.photos[0] && (
+                  {hotel.photos && hotel.photos[0] ? (
                     <img
                       src={`${hotel.photos[0].prefix}300x300${hotel.photos[0].suffix}`}
                       alt="hotel"
                     />
+                  ) : (
+                    <img src="../../assets/Booking/hotel.jpeg" alt="hotel" />
                   )}
                   <div id="hotel-name-location-rating">
                     <h3>{hotel.name}</h3>
                     <p>{hotel.location && hotel.location.formatted_address}</p>
                     <div id="hotel-rating-total-ratings">
-                      <StarRatings
-                        rating={hotel.rating / 2}
-                        starRatedColor="#f8ce0b"
-                        numberOfStars={5}
-                        name="rating"
-                        starDimension="20px"
-                        starSpacing="1px"
-                      />
+                      {hotel.rating && (
+                        <StarRatings
+                          rating={hotel.rating / 2}
+                          starRatedColor="#f8ce0b"
+                          numberOfStars={5}
+                          name="rating"
+                          starDimension="20px"
+                          starSpacing="1px"
+                        />
+                      )}
                       <p>{hotel.stats && hotel.stats.total_ratings}</p>
                     </div>
                   </div>
