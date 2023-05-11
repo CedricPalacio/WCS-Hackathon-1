@@ -51,9 +51,10 @@ function Events({ destinationResult }) {
   if (isLoadedLandmarks) {
     return (
       <div className="events-container" id="events">
+        <h2 id="event-title">A découvrir</h2>
         {landmarkResults && (
           <div className="landmarks">
-            <h2>A découvrir</h2>
+            <h2>Les endroits préférés des internautes</h2>
             <div className="landmarks-list">
               {landmarkResults.map((landmark) => (
                 <div key={landmark.fsq_id} className="landmark-displayed">
