@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./Weather.scss";
 
 function Weather() {
   const [cityWeather, setCityWeather] = useState();
@@ -37,22 +38,27 @@ function Weather() {
         <div className="weatherNowCity">
           <h4>Météo Actuelle</h4>
           <img src={cityWeather.current.condition.icon} alt="icon weather" />
-          <p>
-            Température actuelle : {cityWeather.current.temp_c}°C /{" "}
-            {cityWeather.current.temp_f}°F
-          </p>
-          <p>
-            Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}%{" "}
-          </p>
-          <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
-          <p>
-            Lever du soleil :{cityWeather.forecast.forecastday[0].astro.sunrise}
-          </p>
-          <p>
-            Coucher du soleil :
-            {cityWeather.forecast.forecastday[0].astro.sunset}
-          </p>
+          <div className="tempRainWindNow">
+            <p>
+              Température actuelle : {cityWeather.current.temp_c}°C /{" "}
+              {cityWeather.current.temp_f}°F
+            </p>
+            <p>
+              Précipitations :{" "}
+              {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}%{" "}
+            </p>
+            <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
+          </div>
+          <div className="sunriseSunsetDay">
+            <p>
+              Lever du soleil :
+              {cityWeather.forecast.forecastday[0].astro.sunrise}
+            </p>
+            <p>
+              Coucher du soleil :
+              {cityWeather.forecast.forecastday[0].astro.sunset}
+            </p>
+          </div>
         </div>
         <div className="weatherDayCity">
           <h4>Ce matin</h4>
@@ -62,7 +68,7 @@ function Weather() {
           </p>
           <p>
             Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}{" "}
+            {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}%{" "}
           </p>
         </div>
         <div className="weatherDayCity">
@@ -73,7 +79,7 @@ function Weather() {
           </p>
           <p>
             Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}{" "}
+            {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}%{" "}
           </p>
         </div>
         <div className="weatherDayCity">
@@ -94,12 +100,11 @@ function Weather() {
               src={cityWeather.forecast.forecastday[1].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[1].day.mintemp_c}</p>
-            <p>T° max :{cityWeather.forecast.forecastday[1].day.maxtemp_c}</p>
-            <p>icon {cityWeather.forecast.forecastday[1].day.condition.icon}</p>
+            <p>T° min :{cityWeather.forecast.forecastday[1].day.mintemp_c}°C</p>
+            <p>T° max :{cityWeather.forecast.forecastday[1].day.maxtemp_c}°C</p>
             <p>
               Précipitations :{" "}
-              {cityWeather.forecast.forecastday[1].day.daily_chance_of_rain}
+              {cityWeather.forecast.forecastday[1].day.daily_chance_of_rain}%
             </p>
             <p>
               Vent :{" "}
@@ -123,12 +128,11 @@ function Weather() {
               src={cityWeather.forecast.forecastday[2].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[2].day.mintemp_c}</p>
-            <p>T° max :{cityWeather.forecast.forecastday[2].day.maxtemp_c}</p>
-            <p>icon {cityWeather.forecast.forecastday[2].day.condition.icon}</p>
+            <p>T° min :{cityWeather.forecast.forecastday[2].day.mintemp_c}°C</p>
+            <p>T° max :{cityWeather.forecast.forecastday[2].day.maxtemp_c}°C</p>
             <p>
               Précipitations :{" "}
-              {cityWeather.forecast.forecastday[2].day.daily_chance_of_rain}
+              {cityWeather.forecast.forecastday[2].day.daily_chance_of_rain}%
             </p>
             <p>
               Vent :{" "}
@@ -152,12 +156,11 @@ function Weather() {
               src={cityWeather.forecast.forecastday[3].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[3].day.mintemp_c}</p>
-            <p>T° max :{cityWeather.forecast.forecastday[3].day.maxtemp_c}</p>
-            <p>icon {cityWeather.forecast.forecastday[3].day.condition.icon}</p>
+            <p>T° min :{cityWeather.forecast.forecastday[3].day.mintemp_c}°C</p>
+            <p>T° max :{cityWeather.forecast.forecastday[3].day.maxtemp_c}°C</p>
             <p>
               Précipitations :{" "}
-              {cityWeather.forecast.forecastday[3].day.daily_chance_of_rain}
+              {cityWeather.forecast.forecastday[3].day.daily_chance_of_rain}%
             </p>
             <p>
               Vent :{" "}
@@ -181,12 +184,11 @@ function Weather() {
               src={cityWeather.forecast.forecastday[4].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[4].day.mintemp_c}</p>
-            <p>T° max :{cityWeather.forecast.forecastday[4].day.maxtemp_c}</p>
-            <p>icon {cityWeather.forecast.forecastday[4].day.condition.icon}</p>
+            <p>T° min :{cityWeather.forecast.forecastday[4].day.mintemp_c}°C</p>
+            <p>T° max :{cityWeather.forecast.forecastday[4].day.maxtemp_c}°C</p>
             <p>
               Précipitations :{" "}
-              {cityWeather.forecast.forecastday[4].day.daily_chance_of_rain}
+              {cityWeather.forecast.forecastday[4].day.daily_chance_of_rain}%
             </p>
             <p>
               Vent :{" "}
