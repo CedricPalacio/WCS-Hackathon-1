@@ -5,7 +5,7 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
-.restaurants {
+.restaurants, .hotels {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,11 @@
     margin-top: 2rem;
 }
 
-.restaurant-displayed {
+.restaurants-list, .hotels-list {
+    width : 100%;
+}
+
+.restaurant-displayed, .hotel-displayed {
     display :flex;
     flex-direction: row;
     align-items: center;
@@ -22,14 +26,16 @@
 }
 
 
-#restaurant-name-location-rating {
+#restaurant-name-location-rating, #hotel-name-location-rating {
     display: flex;
     flex-direction: column;
 }
 
-#restaurant-rating-total-ratings {
+#restaurant-rating-total-ratings, #hotel-rating-total-ratings {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
 }
+
+

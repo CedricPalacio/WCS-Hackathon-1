@@ -133,16 +133,27 @@ function Booking({ destinationResult }) {
             <div className="hotels-list">
               {hotelResults.map((hotel) => (
                 <div key={hotel.fsq_id} className="hotel-displayed">
-                  <p>{hotel.name}</p>
-                  <p>{hotel.location && hotel.location.formatted_address}</p>
-                  <p>{hotel.rating}</p>
-                  <p>{hotel.stats && hotel.stats.total_ratings}</p>
                   {hotel.photos && hotel.photos[0] && (
                     <img
                       src={`${hotel.photos[0].prefix}300x300${hotel.photos[0].suffix}`}
                       alt="hotel"
                     />
                   )}
+                  <div id="hotel-name-location-rating">
+                    <h3>{hotel.name}</h3>
+                    <p>{hotel.location && hotel.location.formatted_address}</p>
+                    <div id="hotel-rating-total-ratings">
+                      <StarRatings
+                        rating={hotel.rating / 2}
+                        starRatedColor="#f8ce0b"
+                        numberOfStars={5}
+                        name="rating"
+                        starDimension="20px"
+                        starSpacing="1px"
+                      />
+                      <p>{hotel.stats && hotel.stats.total_ratings}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
