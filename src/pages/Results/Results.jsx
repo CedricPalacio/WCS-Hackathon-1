@@ -3,6 +3,7 @@ import Events from "../../components/Events/Events";
 import Booking from "../../components/Booking/Booking";
 import Map from "../../components/Map/Map";
 import Weather from "../../components/Weather/Weather";
+import ScrollToTopButton from "../../components/ToTopButton/ScrollToTopButton";
 
 function Results({
   setDepartureResult,
@@ -19,6 +20,7 @@ function Results({
         destinationResult={destinationResult}
       />
       <Weather />
+      <ScrollToTopButton />
     </div>
   );
 }
