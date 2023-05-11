@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import L from "leaflet";
+import React, { useState } from "react";
 import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
-import { Button } from "@material-ui/core";
+import "leaflet/dist/leaflet.css";
+import "./Map.scss";
 
 import RoutingControl from "./RoutingControl";
 
@@ -11,35 +11,37 @@ const maps = {
 
 const Map = () => {
   const [map, setMap] = useState(null);
-  const [start, setStart] = useState([38.9072, -77.0369]);
-  const [end, setEnd] = useState([37.7749, -122.4194]);
+  const [start, setStart] = useState([43.6, 1.433333]);
+  const [end, setEnd] = useState([40.712784, -74.005941]);
 
   return (
     <>
-      <MapContainer
-        center={[37.0902, -95.7129]}
-        zoom={3}
-        zoomControl={false}
-        style={{ height: "100vh", width: "100%", padding: 0 }}
-        whenCreated={(map) => setMap(map)}>
-        {/* *************** */}
-        {/* Pass in our custom control layer here, inside of the map container */}
-        {/* *************** */}
-        <RoutingControl
-          position={"topleft"}
-          start={start}
-          end={end}
-          color={"#757de8"}
-        />
-        <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="Map">
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url={maps.base}
-            />
-          </LayersControl.BaseLayer>
-        </LayersControl>
-      </MapContainer>
+      <div className="mapContent">
+        <MapContainer
+          center={[37.0902, -95.7129]}
+          zoom={3}
+          zoomControl={false}
+          style={{ height: "50vh", width: "100%", padding: 0 }}
+          whenCreated={(map) => setMap(map)}>
+          {/* *************** */}
+          {/* Pass in our custom control layer here, inside of the map container */}
+          {/* *************** */}
+          <RoutingControl
+            position={"topleft"}
+            start={start}
+            end={end}
+            color={"#757de8"}
+          />
+          <LayersControl position="topright">
+            <LayersControl.BaseLayer checked name="Map">
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url={maps.base}
+              />
+            </LayersControl.BaseLayer>
+          </LayersControl>
+        </MapContainer>
+      </div>
     </>
   );
 };

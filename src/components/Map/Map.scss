@@ -1,0 +1,27 @@
+.mapContent {
+  height: 50vh;
+  width: 50vw;
+}
+
+#root
+  > div
+  > div.mapContent
+  > div
+  > div.leaflet-control-container
+  > div.leaflet-top.leaflet-left
+  > div {
+  height: 38px;
+  width: 200px;
+  overflow: hidden;
+  h2 {
+    display: none;
+  }
+
+  td {
+    display: none;
+  }
+}
+
+.leaflet-routing-container h3 {
+  font-size: 14px;
+}
