@@ -1,0 +1,61 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/shadows" as *;
+@use "../../styles/buttons" as *;
+
+#results {
+    margin-top: 12rem;
+
+    .container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        & > * {
+            flex-basis: 100%;
+            border: 1px solid $color-grey-200;
+            border-radius: 0.5rem;
+            @include shadow("xs");
+            overflow: hidden;
+        }
+    }
+
+    @media screen and (min-width: 576px) {
+        .container {
+            max-width: 540px;
+            padding: 1rem;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        margin-top: 6rem;
+        .container {
+            max-width: 720px;
+            padding: 2rem;
+            & > * {
+                flex-basis: calc(50% - 1rem);
+            }
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .container {
+            max-width: 960px;
+            padding: 2rem;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+            padding: 2rem;
+        }
+    }
+    @media screen and (min-width: 1400px) {
+        .container {
+            max-width: 1320px;
+            padding: 2rem;
+        }
+    }
+}

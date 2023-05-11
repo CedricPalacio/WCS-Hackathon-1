@@ -6,17 +6,34 @@
 .search-inputs {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     width: 100%;
     gap: 1rem;
     align-items: stretch;
-    @include shadow("md");
     border-radius: 0.5rem;
     border: 1px solid $color-grey-200;
-    a {
-        @include button("lg", $color: "primary", $style: "solid");
+}
+
+#home {
+    .search-inputs {
+        padding: 1rem;
+        @include shadow("md");
+        a {
+            @include button("lg", $color: "primary", $style: "solid");
+        }
     }
 }
+
+#results {
+    .search-inputs {
+        max-width: 800px;
+        padding: 0.5rem;
+        @include shadow("xs");
+        a {
+            @include button("md", $color: "primary", $style: "solid");
+        }
+    }
+}
+
 
 @media screen and (min-width: 768px) {
     .search-inputs {

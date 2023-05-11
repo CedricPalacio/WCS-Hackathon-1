@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.scss";
@@ -6,23 +5,19 @@ import "./Map.scss";
 import RoutingControl from "./RoutingControl";
 
 const maps = {
-  base: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  base: "https://%7Bs%7D.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png",
 };
 
-const Map = ({ departureResult, destinationResult }) => {
-  const [map, setMap] = useState(null);
-  const [distance, setDistance] = useState(null);
+const MapContent = React.memo(
+  ({ map, start, end, onRoutesFound, distance }) => {
+    const handleRoutesFound = (e) => {
+      const route = e.routes[0];
+      const distanceInKm = route.summary.totalDistance / 1000;
+      onRoutesFound(distanceInKm);
+    };
 
-  const handleRoutesFound = (e) => {
-    const route = e.routes[0];
-    const distanceInKm = route.summary.totalDistance / 1000;
-    setDistance(distanceInKm);
-  };
-
-  // console.log(distanceInKm);
-  return (
-    <>
-      <div className="mapContent" id="map">
+    return (
+      <div className="mapContent">
         <MapContainer
           center={[37.0902, -95.7129]}
           zoomLevel={5}
@@ -31,24 +26,24 @@ const Map = ({ departureResult, destinationResult }) => {
           whenCreated={(map) => setMap(map)}>
           <RoutingControl
             position={"topleft"}
-            start={departureResult.coordinates}
-            end={destinationResult.coordinates}
-            color={"#0d9488"}
+            start={start}
+            end={end}
+            color={"#757de8"}
             onRoutesFound={handleRoutesFound}
           />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
-                url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
+                attribution='&copy; <a href="https://stadiamaps.com/%22%3EStadia Maps</a>'
+                url="https://tiles.stadiamaps.com/tiles/outdoors/%7Bz%7D/%7Bx%7D/%7By%7D%7Br%7D.png"
               />
             </LayersControl.BaseLayer>
           </LayersControl>
         </MapContainer>
         <div>{distance && <p>Distance: {distance} km</p>}</div>
       </div>
-    </>
-  );
-};
+    );
+  }
+);
 
-export default Map;
+export default MapContent;
