@@ -86,7 +86,7 @@ function Booking({ destinationResult }) {
 
   if (isLoadedHotels && isLoadedRestaurants) {
     return (
-      <div className="booking-container">
+      <div className="booking-container" id="booking">
         {restaurantResults && (
           <div className="restaurants">
             <h2>Restaurants</h2>

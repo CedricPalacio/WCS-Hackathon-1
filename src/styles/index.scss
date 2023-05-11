@@ -3,7 +3,3 @@
 @use "colors";
 @use "shadows";
 @use "buttons";
-
-.button {
-    @include buttons.button("sm", $color: "primary", $style: "solid");
-}
