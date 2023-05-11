@@ -2,7 +2,7 @@ import React from "react";
 import "./Events.scss";
 
 function Events() {
-  return <div>coucou</div>;
+  return <div></div>;
 }
 
 export default Events;

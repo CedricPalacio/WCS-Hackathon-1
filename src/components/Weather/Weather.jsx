@@ -24,11 +24,10 @@ function Weather() {
   if (!isLoading) {
     return (
       <div>
-        {/* <h2>{cityWeather.location.name}</h2>
+        <h2>{cityWeather.location.name}</h2>
         <h3>
           {cityWeather.location.region}, {cityWeather.location.country}
-        </h3> */}
-        <p>Ciel : {cityWeather.current.condition.text}</p>
+        </h3>
         <p>
           Température actuelle : {cityWeather.current.temp_c}°C /{" "}
           {cityWeather.current.temp_f}°F
@@ -63,7 +62,7 @@ function Weather() {
         </p>
         <p>
           "Chance" de pluie en soirée:{" "}
-          {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}{" "}
+          {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}%{" "}
         </p>
         <p>Vent : {cityWeather.current.wind_mph}</p>
         <p>
