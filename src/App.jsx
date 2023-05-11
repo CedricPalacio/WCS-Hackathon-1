@@ -1,11 +1,11 @@
 import "./styles/reset.css";
-import "./styles/index.scss";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-  <p>coucou c'est nous</p>
-    <a className="button">Cliquer</a>
+      <Route path="/" element={<Home />} />
+      <Route path="/Results" element={<Results />} />
     </>
   );
 }
