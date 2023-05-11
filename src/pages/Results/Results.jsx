@@ -4,6 +4,8 @@ import Booking from "../../components/Booking/Booking";
 import Map from "../../components/Map/Map";
 import Weather from "../../components/Weather/Weather";
 import NavBar from "../../components/NavBar/NavBar";
+
+import ScrollToTopButton from "../../components/ToTopButton/ScrollToTopButton";
 import "./Results.scss";
 
 function Results({ setDepartureResult, setDestinationResult, departureResult, destinationResult }) {
@@ -17,6 +19,8 @@ function Results({ setDepartureResult, setDestinationResult, departureResult, de
                 <Map departureResult={departureResult} destinationResult={destinationResult} />
                 <Weather />
             </div>
+
+            <ScrollToTopButton />
         </div>
     );
 }

@@ -4,7 +4,7 @@
 @use "../../styles/buttons" as *;
 
 #results {
-    margin-top: 6rem;
+    margin-top: 12rem;
 
     .container {
         max-width: 100%;
@@ -14,9 +14,8 @@
         display: flex;
         gap: 2rem;
         flex-wrap: wrap;
-
-        & > *{
-            flex-basis: calc(50% - 1rem);
+        & > * {
+            flex-basis: 100%;
             border: 1px solid $color-grey-200;
             border-radius: 0.5rem;
             @include shadow("xs");
@@ -31,9 +30,13 @@
         }
     }
     @media screen and (min-width: 768px) {
+        margin-top: 6rem;
         .container {
             max-width: 720px;
             padding: 2rem;
+            & > * {
+                flex-basis: calc(50% - 1rem);
+            }
         }
     }
 
