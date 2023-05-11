@@ -31,7 +31,7 @@ function ScrollToTopButton() {
       className={`scroll-to-top ${isVisible ? "show" : ""}`}
       onClick={scrollToTop}
     >
-      <img src="../../assets/oTopButton/ToTopButton.png" alt="to top button" />
+      <i className="bi bi-arrow-bar-up" />
     </button>
   );
 }
