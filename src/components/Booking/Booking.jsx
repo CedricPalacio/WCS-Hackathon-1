@@ -34,7 +34,7 @@ function Booking({ destinationResult }) {
     },
   };
 
-  //fetching the results from the API
+  //fetching the results from the API and removing the unicode characters from the address
   useEffect(() => {
     axios
       .request(restaurantsOptions)

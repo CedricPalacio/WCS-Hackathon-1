@@ -13,7 +13,7 @@ function Events({ destinationResult }) {
 
   // defining the options for the request
 
-  //14000 category is for events, 16000 for the landmarks, we fetch results for the 5 best rated in a circle of 5km radius around given coordinates
+  //14000 category is for events, 16000 for the landmarks, we fetch results for the 5 best rated in a circle of 20km radius around given coordinates
 
   const eventsOptions = {
     method: "GET",
@@ -34,7 +34,7 @@ function Events({ destinationResult }) {
     },
   };
 
-  //fetching the results from the API
+  //fetching the results from the API and removing the unicode characters from the address
   useEffect(() => {
     axios
       .request(eventsOptions)
