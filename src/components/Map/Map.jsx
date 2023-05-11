@@ -9,7 +9,7 @@ const maps = {
   base: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 };
 
-const Map = ({ startCoordinates, endCoordinates }) => {
+const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
   const [start, setStart] = useState([43, 1.433333]);
   const [end, setEnd] = useState([48.72262900986691, 1.5878540993350367]);

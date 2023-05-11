@@ -9,7 +9,7 @@ function Results({ setDepartureResult, setDestinationResult, departureResult, de
     <div>
       <Booking />
       <Events />
-      <Map />
+      <Map departureResult={departureResult} destinationResult={destinationResult} />
       <Weather />
     </div>
   );
