@@ -1,8 +1,9 @@
 @use "./src/styles/typography" as *;
 @use "./src/styles/colors" as *;
 
-.mapContent {
-  min-height: 90vh;
+.leaflet-container {
+  min-height: 80vh;
+  height: 100%;
   width: 50vw;
 }
 
@@ -48,8 +49,8 @@ div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
 }
 
 @media screen and (min-width: 768px) {
-  .mapContent {
-    max-height: 100%;
+  .leaflet-container {
+    max-height: 50vh;
     width: 50vw;
   }
   .leaflet-routing-alt,
