@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.scss";
+// import "./assets/booking/geo-fill.svg";
 
 import RoutingControl from "./RoutingControl";
 
@@ -12,13 +13,13 @@ const maps = {
 const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
 
-  const customIcon = L.icon({
-    iconUrl: "chemin/vers/votre/icon.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
+  // const customIcon = L.icon({
+  //   iconUrl: "./assets/booking/geo-fill.svg",
+  //   iconSize: [25, 41],
+  //   iconAnchor: [12, 41],
+  //   popupAnchor: [1, -34],
+  //   shadowSize: [41, 41],
+  // });
 
   const refresh = [{ departureResult, destinationResult }];
 
@@ -38,7 +39,7 @@ const Map = ({ departureResult, destinationResult }) => {
             start={departureResult.coordinates}
             end={destinationResult.coordinates}
             color={"#0d9488"}
-            icon={customIcon}
+            // icon={customIcon}
           />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
