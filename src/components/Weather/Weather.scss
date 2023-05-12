@@ -3,23 +3,34 @@
 
 
 #weather{
-    h2{
-        @include title("md");
-        text-align: center;
-    }
-    h3{
-        @include title("sm");
-        text-align: center;
+    background-color: #0d9488;
+    .titleSectionWeather{
+        color: #e5e7eb;
+
+        h2{
+            @include title("md");
+            text-align: center;
+            
+        }
+        h3{
+            @include title("sm");
+            text-align: center;
+        }
     }
     .weatherNowCity{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 20px 0px;
-        
+        margin: 0.5rem;
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: #f0fdfa;;
+
         h4{
-            @include text("md");
+            @include text("lg");
+            
         }
 
         img{
@@ -75,7 +86,11 @@
         display: flex;
         flex-direction: wrap;
         justify-content: space-around;
-        margin-bottom: 30px;
+        margin: 0.5rem;
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: #f0fdfa;;
 
         .weatherDayCity{
             display: flex;
@@ -103,11 +118,22 @@
         }
     }
     .weatherAllNextDays{
+        border: 1px solid #e5e7eb;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin: 0.5rem;
+        background-color: #f0fdfa;;
+        h4{
+            @include text("lg");
+            text-align: center;
+        }
+
         .weatherNextDay{
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 0.1rem solid #e5e7eb;
             p{
                 @include text("sm");
             }

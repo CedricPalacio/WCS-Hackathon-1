@@ -3,16 +3,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Weather.scss";
 
-function Weather(destinationResult) {
+function Weather({ destinationResult }) {
   const [cityWeather, setCityWeather] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(destinationResult.coordinates[0]);
-
     axios
       .get(
-        `http://api.weatherapi.com/v1/forecast.json?key=5d427f4d1d0e43b1b1d92206231105&q=43.61062,1.504072&days=5&aqi=no&alerts=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=5d427f4d1d0e43b1b1d92206231105&q=${destinationResult.coordinates[0]},${destinationResult.coordinates[1]}&days=5&aqi=no&alerts=no`
       )
       .then((response) => {
         setCityWeather(response.data);
@@ -33,10 +31,12 @@ function Weather(destinationResult) {
     };
     return (
       <div id="weather">
-        <h2>Météo {cityWeather.location.name}</h2>
-        <h3>
-          {cityWeather.location.region}, {cityWeather.location.country}
-        </h3>
+        <div className="titleSectionWeather">
+          <h2>Météo {cityWeather.location.name}</h2>
+          <h3>
+            {cityWeather.location.region}, {cityWeather.location.country}
+          </h3>
+        </div>
         <div className="weatherNowCity">
           <h4>Météo Actuelle</h4>
           <img src={cityWeather.current.condition.icon} alt="icon weather" />
@@ -51,7 +51,7 @@ function Weather(destinationResult) {
             </div>{" "}
             <div className="sunriseSunsetDay">
               <div className="logoTextsunrise">
-                <i class="bi bi-sunrise"></i>
+                <i className="bi bi-sunrise"></i>
                 <p>{cityWeather.forecast.forecastday[0].astro.sunrise}</p>
               </div>
               <div className="logoTextsunset">
@@ -65,11 +65,11 @@ function Weather(destinationResult) {
           <div className="weatherDayCity">
             <h4>Matinée</h4>
             <div className="iconThermoAndText">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}</p>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}%{" "}
               </p>
@@ -78,11 +78,11 @@ function Weather(destinationResult) {
           <div className="weatherDayCity">
             <h4>Après-midi</h4>
             <div className="iconThermoAndText">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}</p>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}%{" "}
               </p>
@@ -91,11 +91,11 @@ function Weather(destinationResult) {
           <div className="weatherDayCity">
             <h4>Soirée</h4>
             <div className="iconThermoAndText">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}</p>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}%{" "}
               </p>
@@ -126,7 +126,7 @@ function Weather(destinationResult) {
               alt=""
             />
             <div className="temperatureMinMax">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <div className="temMintempMax">
                 <p className="tempMin">
                   {cityWeather.forecast.forecastday[1].day.mintemp_c}°C /
@@ -137,13 +137,13 @@ function Weather(destinationResult) {
               </div>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[1].day.daily_chance_of_rain}%
               </p>
             </div>
             <div className="logoAndTextWind">
-              <i class="bi bi-wind"></i>
+              <i className="bi bi-wind"></i>
               <p>
                 {speedWindKmH(
                   cityWeather.forecast.forecastday[1].day.maxwind_mph
@@ -165,7 +165,7 @@ function Weather(destinationResult) {
               alt=""
             />
             <div className="temperatureMinMax">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <div className="temMintempMax">
                 <p className="tempMin">
                   {cityWeather.forecast.forecastday[2].day.mintemp_c}°C /
@@ -176,13 +176,13 @@ function Weather(destinationResult) {
               </div>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[2].day.daily_chance_of_rain}%
               </p>
             </div>
             <div className="logoAndTextWind">
-              <i class="bi bi-wind"></i>
+              <i className="bi bi-wind"></i>
               <p>
                 {speedWindKmH(
                   cityWeather.forecast.forecastday[2].day.maxwind_mph
@@ -204,7 +204,7 @@ function Weather(destinationResult) {
               alt=""
             />
             <div className="temperatureMinMax">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <div className="temMintempMax">
                 <p className="tempMin">
                   {cityWeather.forecast.forecastday[3].day.mintemp_c}°C /
@@ -215,13 +215,13 @@ function Weather(destinationResult) {
               </div>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[3].day.daily_chance_of_rain}%
               </p>
             </div>
             <div className="logoAndTextWind">
-              <i class="bi bi-wind"></i>
+              <i className="bi bi-wind"></i>
               <p>
                 {speedWindKmH(
                   cityWeather.forecast.forecastday[3].day.maxwind_mph
@@ -243,7 +243,7 @@ function Weather(destinationResult) {
               alt=""
             />
             <div className="temperatureMinMax">
-              <i class="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-half"></i>
               <div className="temMintempMax">
                 <p className="tempMin">
                   {cityWeather.forecast.forecastday[4].day.mintemp_c}°C /
@@ -254,13 +254,13 @@ function Weather(destinationResult) {
               </div>
             </div>
             <div className="iconRainAndText">
-              <i class="bi bi-umbrella"></i>
+              <i className="bi bi-umbrella"></i>
               <p>
                 {cityWeather.forecast.forecastday[4].day.daily_chance_of_rain}%
               </p>
             </div>
             <div className="logoAndTextWind">
-              <i class="bi bi-wind"></i>
+              <i className="bi bi-wind"></i>
               <p>
                 {speedWindKmH(
                   cityWeather.forecast.forecastday[4].day.maxwind_mph
