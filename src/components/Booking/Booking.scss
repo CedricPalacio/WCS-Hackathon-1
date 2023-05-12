@@ -1,3 +1,7 @@
+.booking-container {
+    padding: 1rem;
+}
+
 .booking-container img {
     width: 100px;
     height: auto;
@@ -10,7 +14,6 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    margin-top: 2rem;
 }
 
 .restaurants-list, .hotels-list {
@@ -47,5 +50,16 @@
     flex-direction: row;
     justify-content: center;
     gap: 3rem;
+}
+
+.restaurant-displayed.website-included, .hotel-displayed.website-included{
+    cursor: pointer;
+}
+
+.restaurant-displayed.website-included:hover, .hotel-displayed.website-included:hover {
+    border-radius: 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #f5f5f5;
+    
 }
 
