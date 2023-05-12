@@ -1,0 +1,43 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/shadows" as *;
+@use "../../styles/buttons" as *;
+
+.search-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    align-items: stretch;
+    border-radius: 0.5rem;
+    border: 1px solid $color-grey-200;
+}
+
+#home {
+    .search-inputs {
+        padding: 1rem;
+        @include shadow("md");
+        a {
+            @include button("lg", $color: "primary", $style: "solid");
+        }
+    }
+}
+
+#results {
+    .search-inputs {
+        max-width: 800px;
+        padding: 0.5rem;
+        @include shadow("xs");
+        a {
+            // @include button("md", $color: "primary", $style: "solid");
+            display: none;
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .search-inputs {
+        flex-direction: row;
+    }
+}

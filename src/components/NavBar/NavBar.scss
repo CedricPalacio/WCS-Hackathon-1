@@ -1,0 +1,24 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/shadows" as *;
+@use "../../styles/buttons" as *;
+
+nav.nav-bar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5000;
+    background-color: $color-white;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+    nav.nav-bar {
+        @include shadow("xs");
+        border-bottom: 1px solid $color-grey-200;
+        position: fixed;
+        padding: 0.5rem;
+    }
+}

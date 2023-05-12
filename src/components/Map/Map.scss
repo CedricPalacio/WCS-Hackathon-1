@@ -1,0 +1,60 @@
+@use "./src/styles/typography" as *;
+@use "./src/styles/colors" as *;
+
+.mapContent {
+  min-height: 90vh;
+  width: 50vw;
+}
+
+div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
+  height: 35px;
+  width: 140px;
+  overflow: hidden;
+  background-color: $color-primary-600;
+  margin-bottom: 1rem;
+  h2 {
+    display: none;
+  }
+
+  td {
+    display: none;
+  }
+}
+
+#map
+  > div
+  > div.leaflet-control-container
+  > div.leaflet-top.leaflet-left
+  > div
+  > div
+  > div
+  > h3 {
+  font-size: 13px;
+  color: white;
+  font-weight: 600;
+}
+.leaflet-retina .leaflet-control-layers-toggle {
+  display: none;
+}
+.leaflet-routing-alt {
+  margin: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.8rem;
+  padding: 5px;
+}
+
+.leaflet-routing-collapse-btn:after {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .mapContent {
+    max-height: 100%;
+    width: 50vw;
+  }
+  .leaflet-routing-alt,
+  .leaflet-routing-geocoders,
+  .leaflet-routing-error {
+    padding: 1;
+  }
+}

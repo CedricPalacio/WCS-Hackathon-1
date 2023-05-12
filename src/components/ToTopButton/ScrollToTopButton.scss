@@ -1,0 +1,25 @@
+@use "../../styles/buttons" as *;
+@use "../../styles/colors" as *;
+
+.scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 2000;
+    color: black;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    padding: 8px 8px;
+    margin: 8px 8px;
+
+    color: $color-white;
+     i {
+        font-size: 2rem!important;
+    }
+}
+
+.scroll-to-top.show {
+    display: initial;
+}

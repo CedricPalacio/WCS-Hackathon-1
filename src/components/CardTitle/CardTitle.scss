@@ -1,0 +1,28 @@
+@use "../../styles/colors" as *;
+@use "../../styles/typography" as *;
+@use "../../styles/shadows" as *;
+@use "../../styles/buttons" as *;
+
+.card-title{
+    display: flex;
+    padding: 1rem;
+    background-color: $color-grey-50;
+    border-bottom: 1px solid $color-grey-200;
+    gap: 0.5rem;
+    align-items: center;
+    @include text("lg", $weight: 500);
+    color: $color-grey-600;
+    text-transform: uppercase;
+    .icon{
+        padding: 0.5rem;
+        background-color: $color-grey-100;
+        border-radius: 50vw;
+        height: 3rem;
+        width: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-grey-700;
+
+    }
+}
