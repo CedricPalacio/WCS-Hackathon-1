@@ -13,11 +13,11 @@ function Events({ destinationResult }) {
 
   // defining the options for the request
 
-  //16000 category for the landmarks, we fetch results for the 5 best rated in a circle of 20km radius around given coordinates
+  //16000 category for the landmarks, we fetch results for the 5 best rated in a circle of 40km radius around given coordinates
 
   const landmarksOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=40000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
