@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import StarRatings from "react-star-ratings";
 import "./Events.scss";
+import CardTitle from "../CardTitle/CardTitle";
 
 function Events({ destinationResult }) {
-  //defining event and landmarks results
-  const [landmarkResults, setLandmarkResults] = useState([]);
+    //defining event and landmarks results
+    const [landmarkResults, setLandmarkResults] = useState([]);
 
-  //two isloaded states for event and landmarks results
-  const [isLoadedLandmarks, setIsLoadedLandmarks] = useState(false);
+    //two isloaded states for event and landmarks results
+    const [isLoadedLandmarks, setIsLoadedLandmarks] = useState(false);
 
-  // defining the options for the request
+    // defining the options for the request
 
-  //16000 category for the landmarks, we fetch results for the 5 best rated in a circle of 40km radius around given coordinates
+    //16000 category for the landmarks, we fetch results for the 5 best rated in a circle of 40km radius around given coordinates
 
   const landmarksOptions = {
     method: "GET",
@@ -50,71 +51,51 @@ function Events({ destinationResult }) {
       });
   }, [destinationResult]);
 
-  if (isLoadedLandmarks) {
-    return (
-      <div className="events-container" id="events">
-        <h2 id="event-title">A découvrir</h2>
-        {landmarkResults && (
-          <div className="landmarks">
-            <h2>Les endroits préférés des internautes</h2>
-            <div className="landmarks-list">
-              {landmarkResults.map((landmark) => (
-                <div
-                  key={landmark.fsq_id}
-                  className={`landmark-displayed ${
-                    landmark.website ? "website-included" : ""
-                  }`}
-                  onClick={() => {
-                    landmark.website && window.open(landmark.website, "_blank");
-                  }}
-                >
-                  {landmark.photos && landmark.photos[0] ? (
-                    <img
-                      src={`${landmark.photos[0].prefix}300x300${landmark.photos[0].suffix}`}
-                      alt="landmark"
-                    />
-                  ) : (
-                    <img
-                      src="../../assets/Events/landmark.jpeg"
-                      alt="landmark"
-                    />
-                  )}
-                  <div id="landmark-name-location-rating">
-                    <h3>{landmark.name}</h3>
-                    <p>
-                      {landmark.location && landmark.location.formatted_address}
-                    </p>
-                    <div id="landmark-rating-total-ratings">
-                      {landmark.rating && (
-                        <StarRatings
-                          rating={landmark.rating / 2}
-                          starRatedColor="#f8ce0b"
-                          numberOfStars={5}
-                          name="rating"
-                          starDimension="20px"
-                          starSpacing="1px"
-                        />
-                      )}
-                      <p>{landmark.stats && landmark.stats.total_ratings}</p>
+    if (isLoadedLandmarks) {
+        return (
+            <div className="events-container" id="events">
+                <CardTitle title="À découvrir" icon="ticket" />
+                {landmarkResults && (
+                    <div className="landmarks">
+                        <h3 className="landmarks-title">Les endroits préférés des internautes</h3>
+                        <div className="landmarks-list">
+                            {landmarkResults.map((landmark) => (
+                                <div
+                                    key={landmark.fsq_id}
+                                    className={`landmark-displayed ${landmark.website ? "website-included" : ""}`}
+                                    onClick={() => {
+                                        landmark.website && window.open(landmark.website, "_blank");
+                                    }}>
+                                    {landmark.photos && landmark.photos[0] ? <img src={`${landmark.photos[0].prefix}300x300${landmark.photos[0].suffix}`} alt="landmark" /> : <img src="../../assets/Events/landmark.jpeg" alt="landmark" />}
+                                    <div id="landmark-name-location-rating">
+                                        <h3>{landmark.name}</h3>
+                                        <p>{landmark.location && landmark.location.formatted_address}</p>
+                                        <div id="landmark-rating-total-ratings">
+                                            {landmark.rating && <StarRatings rating={landmark.rating / 2} starRatedColor="#0d9488" numberOfStars={5} name="rating" starDimension="20px" starSpacing="1px" />}
+                                            {landmark.stats && (
+                                                <p>
+                                                    <i className="bi bi-hand-thumbs-up" /> {landmark.stats.total_ratings}
+                                                </p>
+                                            )}
+                                        </div>
+                                        {/* if contains website, displays button */}
+                                        {landmark.website && (
+                                            <button className="website-button">
+                                                En savoir plus
+                                                <i className="bi bi-chevron-right" />
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                  </div>
-                  {/* if contains website, displays button */}
-                  {landmark.website && (
-                    <button className="website-button">
-                      En savoir plus
-                      <i className="bi bi-chevron-right" />
-                    </button>
-                  )}
-                </div>
-              ))}
+                )}
             </div>
-          </div>
-        )}
-      </div>
-    );
-  } else {
-    return null;
-  }
+        );
+    } else {
+        return null;
+    }
 }
 
 export default Events;

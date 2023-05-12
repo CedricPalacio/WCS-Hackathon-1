@@ -29,7 +29,8 @@
         padding: 0.5rem;
         @include shadow("xs");
         a {
-            @include button("md", $color: "primary", $style: "solid");
+            // @include button("md", $color: "primary", $style: "solid");
+            display: none;
         }
     }
 }

@@ -6,7 +6,8 @@ export default function Home({ setDepartureResult, setDestinationResult, departu
         <div id="home">
             <div className="container">
                 <div className="content">
-                    <h1>En route pour un premier aperçu de votre prochaine destination.</h1>
+                    <h1>Découvrez. Explorez. Voyagez.</h1>
+                    <h2>En route vers votre prochaine destination.</h2>
                     <SearchInputs setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult} />
                 </div>
             </div>
