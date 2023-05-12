@@ -9,7 +9,7 @@ export default function IconsLinks() {
                         <div className="icon">
                             <i className="bi bi-shop-window" />
                         </div>
-                        <p>Où dormir</p>
+                        <p>Où manger/dormir</p>
                     </a>
                 </li>
                 <li>
