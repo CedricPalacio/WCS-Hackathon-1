@@ -157,6 +157,12 @@ function Booking({ destinationResult }) {
                       </p>
                     </div>
                   </div>
+                  {restaurant.website && (
+                    <button className="website-button">
+                      En savoir plus
+                      <i className="bi bi-chevron-right" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
@@ -200,6 +206,12 @@ function Booking({ destinationResult }) {
                       <p>{hotel.stats && hotel.stats.total_ratings}</p>
                     </div>
                   </div>
+                  {hotel.website && (
+                    <button className="website-button">
+                      En savoir plus
+                      <i className="bi bi-chevron-right" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
