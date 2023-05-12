@@ -23,7 +23,7 @@ const Map = ({ departureResult, destinationResult }) => {
           center={[37.0902, -95.7129]}
           zoomLevel={5}
           zoomControl={false}
-          style={{ height: "50vh", width: "100%", padding: 0 }}
+          style={{ height: "100%", width: "100%", padding: 0 }}
           whenCreated={(map) => setMap(map)}>
           <RoutingControl
             position={"topleft"}
