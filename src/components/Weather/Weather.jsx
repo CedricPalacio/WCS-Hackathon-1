@@ -24,10 +24,6 @@ function Weather({ destinationResult }) {
   }, [destinationResult]);
 
   if (!isLoading) {
-    console.log(cityWeather);
-  }
-
-  if (!isLoading) {
     const speedWindKmH = (windMph) => {
       let speedWind = 0;
       speedWind = Math.round(windMph * 1.609);
