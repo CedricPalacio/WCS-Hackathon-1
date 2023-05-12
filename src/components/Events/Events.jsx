@@ -51,7 +51,7 @@ function Events({ destinationResult }) {
                 <CardTitle title="À découvrir" icon="ticket" />
                 {landmarkResults && (
                     <div className="landmarks">
-                        <h3>Les endroits préférés des internautes</h3>
+                        <h3 className="landmarks-title">Les endroits préférés des internautes</h3>
                         <div className="landmarks-list">
                             {landmarkResults.map((landmark) => (
                                 <div
