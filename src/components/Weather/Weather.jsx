@@ -10,7 +10,11 @@ function Weather({ destinationResult }) {
   useEffect(() => {
     axios
       .get(
-        `http://api.weatherapi.com/v1/forecast.json?key=5d427f4d1d0e43b1b1d92206231105&q=${destinationResult.coordinates[0]},${destinationResult.coordinates[1]}&days=5&aqi=no&alerts=no`
+        `http://api.weatherapi.com/v1/forecast.json?key=${
+          import.meta.env.VITE_APP_WEATHERAPI_API_KEY
+        }&q=${destinationResult.coordinates[0]},${
+          destinationResult.coordinates[1]
+        }&days=5&aqi=no&alerts=no`
       )
       .then((response) => {
         setCityWeather(response.data);
