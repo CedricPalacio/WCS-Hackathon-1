@@ -70,7 +70,7 @@ function Weather({ destinationResult }) {
             <h4>Matinée</h4>
             <div className="iconThermoAndText">
               <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}</p>
+              <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}°C</p>
             </div>
             <div className="iconRainAndText">
               <i className="bi bi-umbrella"></i>
@@ -83,7 +83,7 @@ function Weather({ destinationResult }) {
             <h4>Après-midi</h4>
             <div className="iconThermoAndText">
               <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}</p>
+              <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}°C</p>
             </div>
             <div className="iconRainAndText">
               <i className="bi bi-umbrella"></i>
@@ -96,7 +96,7 @@ function Weather({ destinationResult }) {
             <h4>Soirée</h4>
             <div className="iconThermoAndText">
               <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}</p>
+              <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}°C</p>
             </div>
             <div className="iconRainAndText">
               <i className="bi bi-umbrella"></i>
@@ -109,14 +109,6 @@ function Weather({ destinationResult }) {
         <div className="weatherAllNextDays">
           <h4>Météo des prochains jours</h4>
           <div className="weatherNextDay">
-            {/* <h4>
-              {" "}
-              {cityWeather.forecast.forecastday[1].date
-                .split("-")
-                .reverse()
-                .join("/")}
-            </h4> */}
-            {/* transform date from "2023-05-12" like into "12/05" */}
             <h4>
               {cityWeather.forecast.forecastday[1].date
                 .split("-")
