@@ -7,7 +7,7 @@ export default function IconsLinks() {
                 <li>
                     <a href="#booking">
                         <div className="icon">
-                            <i className="bi bi-house-heart" />
+                            <i className="bi bi-shop-window" />
                         </div>
                         <p>Où dormir</p>
                     </a>

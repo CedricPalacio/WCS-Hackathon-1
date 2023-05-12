@@ -50,7 +50,7 @@ export default function LocationInput({ icon = "geo", placeholder, setResult, re
             />
             {areAPIResultsVisible ? (
                 <ul className="location-selector">
-                    {apiResults.length <= 0 ? <span class="loader"></span> : null}
+                    {apiResults.length <= 0 ? <span className="loader"></span> : null}
                     {apiResults.map((result) => (
                         <li
                             key={result.properties.id}
