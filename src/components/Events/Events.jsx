@@ -15,35 +15,41 @@ function Events({ destinationResult }) {
 
     //16000 category for the landmarks, we fetch results for the 5 best rated in a circle of 40km radius around given coordinates
 
-    const landmarksOptions = {
-        method: "GET",
-        url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=RATING&limit=5`,
-        headers: {
-            accept: "application/json",
-            Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
-        },
-    };
+  const landmarksOptions = {
+    method: "GET",
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=POPULARITY&limit=5`,
+    headers: {
+      accept: "application/json",
+      Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
+    },
+  };
 
-    useEffect(() => {
-        axios
-            .request(landmarksOptions)
-            .then(function (response) {
-                const temporaryResults = response.data.results.map((landmark) => {
-                    return {
-                        ...landmark,
-                        location: {
-                            ...landmark.location,
-                            formatted_address: landmark.location.formatted_address.replace(/\\u0026/g, "&").replace(/\\u00e9s/g, "és"),
-                        },
-                    };
-                });
-                setLandmarkResults(temporaryResults);
-                setIsLoadedLandmarks(true);
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
-    }, [destinationResult]);
+  useEffect(() => {
+    axios
+      .request(landmarksOptions)
+      .then(function (response) {
+        const temporaryResults = response.data.results.map((landmark) => {
+          return {
+            ...landmark,
+            location: {
+              ...landmark.location,
+              formatted_address: landmark.location.formatted_address
+                //first letter into uppercase
+                .replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+                  letter.toUpperCase()
+                )
+                .replace(/\\u0026/g, "&")
+                .replace(/\\u00e9s/g, "és"),
+            },
+          };
+        });
+        setLandmarkResults(temporaryResults);
+        setIsLoadedLandmarks(true);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, [destinationResult]);
 
     if (isLoadedLandmarks) {
         return (
