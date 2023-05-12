@@ -3,7 +3,7 @@ import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "./Map.scss";
-// import "./assets/booking/geo-fill.svg";
+import CardTitle from "../CardTitle/CardTitle";
 
 import RoutingControl from "./RoutingControl";
 
@@ -30,6 +30,7 @@ const Map = ({ departureResult, destinationResult }) => {
 
   return (
     <div className="mapContent" id="map">
+      <CardTitle title="S'y rendre" icon="pin-map" />
       <MapContainer
         center={[37.0902, -95.7129]}
         zoom={5} // Change the zoom level as needed

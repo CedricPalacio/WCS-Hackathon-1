@@ -47,42 +47,40 @@ export default function LocationInput({
       setAreAPIResultsVisible(false);
     }
   };
-
-  return (
-    <div className="location-input">
-      <i className={`bi bi-${icon}`} />
-      <input
-        type="text"
-        placeholder={placeholder}
-        onChange={(event) => {
-          setValue(event.target.value);
-          getLocation(event.target.value);
-        }}
-        value={value}
-        onFocus={(event) => {
-          setAreAPIResultsVisible(true);
-          getLocation(event.target.value);
-        }}
-        onBlur={handleInputBlur}
-      />
-      {areAPIResultsVisible ? (
-        <ul className="location-selector">
-          {apiResults.length <= 0 ? <span className="loader"></span> : null}
-          {apiResults.map((result) => (
-            <li
-              key={result.properties.id}
-              onClick={() => {
-                const { locality, region, macroregion, country } =
-                  result.properties;
-                setResult({
-                  coordinates: result.geometry.coordinates.reverse(),
-                  city: {
-                    name: locality,
-                    departement: region,
-                    region: macroregion,
-                    country: country,
-                  },
-                });
+    return (
+        <div className="location-input">
+            <i className={`bi bi-${icon}`} />
+            <input
+                type="text"
+                placeholder={placeholder}
+                onChange={(event) => {
+                    setValue(event.target.value);
+                    getLocation(event.target.value);
+                }}
+                value={value}
+                onFocus={(event) => {
+                    setAreAPIResultsVisible(true);
+                    getLocation(event.target.value);
+                }}
+                onBlur={handleInputBlur}
+            />
+            {areAPIResultsVisible ? (
+                <ul className="location-selector">
+                    {apiResults.length <= 0 ? <span className="loader"></span> : null}
+                    {apiResults.map((result) => (
+                        <li
+                            key={result.properties.id}
+                            onClick={() => {
+                                const { locality, region, macroregion, country } = result.properties;
+                                setResult({
+                                    coordinates: result.geometry.coordinates.reverse(),
+                                    city: {
+                                        name: locality,
+                                        departement: region,
+                                        region: macroregion,
+                                        country: country,
+                                    },
+                                });
 
                 setValue(
                   `${locality || ""}${locality && region ? ", " : ""}${

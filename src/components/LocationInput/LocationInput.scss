@@ -21,6 +21,9 @@
         height: 100%;
         border: none;
         outline: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
 
         @include text("md");
         color: $color-grey-600;
@@ -83,7 +86,7 @@
             overflow: hidden;
             white-space: nowrap;
             width: 100%;
-            
+
             &:hover {
                 background-color: $color-primary-100;
                 color: $color-primary-800;
