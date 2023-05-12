@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "./Map.scss";
 // import "./assets/booking/geo-fill.svg";
 
@@ -33,8 +34,7 @@ const Map = ({ departureResult, destinationResult }) => {
         center={[37.0902, -95.7129]}
         zoom={5} // Change the zoom level as needed
         zoomControl={false}
-        style={{ height: "100%", width: "100%", padding: 0 }}
-      >
+        style={{ height: "100%", width: "100%", padding: 0 }}>
         {/* Use map() instead of map() */}
         {refresh.map((item) => {
           return (
