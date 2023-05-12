@@ -52,7 +52,6 @@ function Booking({ destinationResult }) {
             },
           };
         });
-        console.log(temporaryResults);
         setRestaurantResults(temporaryResults);
         setIsLoadedRestaurants(true);
       })
@@ -76,7 +75,6 @@ function Booking({ destinationResult }) {
             },
           };
         });
-        console.log(temporaryResults);
         setHotelResults(temporaryResults);
         setIsLoadedHotels(true);
       })

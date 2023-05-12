@@ -4,7 +4,6 @@ import StarRatings from "react-star-ratings";
 import "./Events.scss";
 
 function Events({ destinationResult }) {
-  console.log(destinationResult);
   //defining event and landmarks results
   const [landmarkResults, setLandmarkResults] = useState([]);
 
@@ -39,7 +38,6 @@ function Events({ destinationResult }) {
             },
           };
         });
-        console.log(temporaryResults);
         setLandmarkResults(temporaryResults);
         setIsLoadedLandmarks(true);
       })
