@@ -12,6 +12,14 @@ const maps = {
 const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
 
+  const customIcon = L.icon({
+    iconUrl: "chemin/vers/votre/icon.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
   const refresh = [{ departureResult, destinationResult }];
 
   console.log(refresh);
@@ -30,6 +38,7 @@ const Map = ({ departureResult, destinationResult }) => {
             start={departureResult.coordinates}
             end={destinationResult.coordinates}
             color={"#0d9488"}
+            icon={customIcon}
           />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
