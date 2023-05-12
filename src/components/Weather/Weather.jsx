@@ -18,95 +18,80 @@ function Weather({ destinationResult }) {
             .catch((err) => console.error(err));
     }, [destinationResult]);
 
-  if (!isLoading) {
-    const speedWindKmH = (windMph) => {
-      let speedWind = 0;
-      speedWind = Math.round(windMph * 1.609);
-      return speedWind;
-    };
-    return (
-      <div id="weather">
-        <div className="titleSectionWeather">
-          <h2>Météo {cityWeather.location.name}</h2>
-          <h3>
-            {cityWeather.location.region}, {cityWeather.location.country}
-          </h3>
-        </div>
-        <div className="weatherNowCity">
-          <h4>Météo Actuelle</h4>
-          <img src={cityWeather.current.condition.icon} alt="icon weather" />
-          <div className="mainDataWeatherCity">
-            <div className="tempRainWindNow">
-              <p>Température: {cityWeather.current.temp_c}°C </p>
-              <p>
-                Précipitations :{" "}
-                {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}%{" "}
-              </p>{" "}
-              <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
-            </div>{" "}
-            <div className="sunriseSunsetDay">
-              <div className="logoTextsunrise">
-                <i className="bi bi-sunrise"></i>
-                <p>{cityWeather.forecast.forecastday[0].astro.sunrise}</p>
-              </div>
-              <div className="logoTextsunset">
-                <i className="bi bi-sunset"></i>
-                <p> {cityWeather.forecast.forecastday[0].astro.sunset}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="weatherAllDaysCity">
-          <div className="weatherDayCity">
-            <h4>Matinée</h4>
-            <div className="iconThermoAndText">
-              <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}°C</p>
-            </div>
-            <div className="iconRainAndText">
-              <i className="bi bi-umbrella"></i>
-              <p>
-                {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}%{" "}
-              </p>
-            </div>
-          </div>
-          <div className="weatherDayCity">
-            <h4>Après-midi</h4>
-            <div className="iconThermoAndText">
-              <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}°C</p>
-            </div>
-            <div className="iconRainAndText">
-              <i className="bi bi-umbrella"></i>
-              <p>
-                {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}%{" "}
-              </p>
-            </div>
-          </div>
-          <div className="weatherDayCity">
-            <h4>Soirée</h4>
-            <div className="iconThermoAndText">
-              <i className="bi bi-thermometer-half"></i>
-              <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}°C</p>
-            </div>
-            <div className="iconRainAndText">
-              <i className="bi bi-umbrella"></i>
-              <p>
-                {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}%{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="weatherAllNextDays">
-          <h4>Météo des prochains jours</h4>
-          <div className="weatherNextDay">
-            <h4>
-              {cityWeather.forecast.forecastday[1].date
-                .split("-")
-                .reverse()
-                .join("/")
-                .slice(0, -5)}
-            </h4>
+    if (!isLoading) {
+        const speedWindKmH = (windMph) => {
+            let speedWind = 0;
+            speedWind = Math.round(windMph * 1.609);
+            return speedWind;
+        };
+        return (
+            <div id="weather">
+                {" "}
+                <CardTitle
+                    title={`La météo à ${cityWeather.location.name ? `${cityWeather.location.name}, ` : ""}
+              ${cityWeather.location.region ? `${cityWeather.location.region}, ` : ""}
+              ${cityWeather.location.country ? cityWeather.location.country : ""}`}
+                    icon="cloud-sun"
+                />
+                <div className="weatherNowCity">
+                    <h4>Météo Actuelle</h4>
+                    <img src={cityWeather.current.condition.icon} alt="icon weather" />
+                    <div className="mainDataWeatherCity">
+                        <div className="tempRainWindNow">
+                            <p>Température: {cityWeather.current.temp_c}°C </p>
+                            <p>Précipitations : {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}% </p> <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
+                        </div>{" "}
+                        <div className="sunriseSunsetDay">
+                            <div className="logoTextsunrise">
+                                <i className="bi bi-sunrise"></i>
+                                <p>{cityWeather.forecast.forecastday[0].astro.sunrise}</p>
+                            </div>
+                            <div className="logoTextsunset">
+                                <i className="bi bi-sunset"></i>
+                                <p> {cityWeather.forecast.forecastday[0].astro.sunset}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="weatherAllDaysCity">
+                    <div className="weatherDayCity">
+                        <h4>Matinée</h4>
+                        <div className="iconThermoAndText">
+                            <i className="bi bi-thermometer-half"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}°C</p>
+                        </div>
+                        <div className="iconRainAndText">
+                            <i className="bi bi-umbrella"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}% </p>
+                        </div>
+                    </div>
+                    <div className="weatherDayCity">
+                        <h4>Après-midi</h4>
+                        <div className="iconThermoAndText">
+                            <i className="bi bi-thermometer-half"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}°C</p>
+                        </div>
+                        <div className="iconRainAndText">
+                            <i className="bi bi-umbrella"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}% </p>
+                        </div>
+                    </div>
+                    <div className="weatherDayCity">
+                        <h4>Soirée</h4>
+                        <div className="iconThermoAndText">
+                            <i className="bi bi-thermometer-half"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}°C</p>
+                        </div>
+                        <div className="iconRainAndText">
+                            <i className="bi bi-umbrella"></i>
+                            <p>{cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}% </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="weatherAllNextDays">
+                    <h4>Météo des prochains jours</h4>
+                    <div className="weatherNextDay">
+                        <h4>{cityWeather.forecast.forecastday[1].date.split("-").reverse().join("/").slice(0, -5)}</h4>
 
                         <img src={cityWeather.forecast.forecastday[1].day.condition.icon} alt="" />
                         <div className="temperatureMinMax">
