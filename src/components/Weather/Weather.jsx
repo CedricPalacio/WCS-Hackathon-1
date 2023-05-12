@@ -3,21 +3,23 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Weather.scss";
 
-function Weather() {
+function Weather(destinationResult) {
   const [cityWeather, setCityWeather] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    console.log(destinationResult.coordinates[0]);
+
     axios
       .get(
-        "http://api.weatherapi.com/v1/forecast.json?key=5d427f4d1d0e43b1b1d92206231105&q=Toulouse&days=5&aqi=no&alerts=no"
+        `http://api.weatherapi.com/v1/forecast.json?key=5d427f4d1d0e43b1b1d92206231105&q=43.61062,1.504072&days=5&aqi=no&alerts=no`
       )
       .then((response) => {
         setCityWeather(response.data);
         setIsLoading(false);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [destinationResult]);
 
   if (!isLoading) {
     console.log(cityWeather);
