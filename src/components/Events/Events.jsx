@@ -17,7 +17,7 @@ function Events({ destinationResult }) {
 
   const landmarksOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=20000&categories=16000&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -57,7 +57,15 @@ function Events({ destinationResult }) {
             <h2>Les endroits préférés des internautes</h2>
             <div className="landmarks-list">
               {landmarkResults.map((landmark) => (
-                <div key={landmark.fsq_id} className="landmark-displayed">
+                <div
+                  key={landmark.fsq_id}
+                  className={`landmark-displayed ${
+                    landmark.website ? "website-included" : ""
+                  }`}
+                  onClick={() => {
+                    landmark.website && window.open(landmark.website, "_blank");
+                  }}
+                >
                   {landmark.photos && landmark.photos[0] ? (
                     <img
                       src={`${landmark.photos[0].prefix}300x300${landmark.photos[0].suffix}`}

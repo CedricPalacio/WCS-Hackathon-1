@@ -19,7 +19,7 @@ function Booking({ destinationResult }) {
   const restaurantsOptions = {
     method: "GET",
 
-    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=13065&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -28,7 +28,7 @@ function Booking({ destinationResult }) {
 
   const hotelsOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=RATING&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -114,7 +114,17 @@ function Booking({ destinationResult }) {
           <div className="restaurants">
             <div className="restaurants-list">
               {restaurantResults.map((restaurant) => (
-                <div key={restaurant.fsq_id} className="restaurant-displayed">
+                <div
+                  key={restaurant.fsq_id}
+                  // if restaurant has a website, className is restaurant-displayed website-included, else it is restaurant-displayed
+                  className={`restaurant-displayed ${
+                    restaurant.website ? "website-included" : ""
+                  }`}
+                  onClick={() => {
+                    restaurant.website &&
+                      window.open(restaurant.website, "_blank");
+                  }}
+                >
                   {restaurant.photos && restaurant.photos[0] ? (
                     <img
                       src={`${restaurant.photos[0].prefix}300x300${restaurant.photos[0].suffix}`}
@@ -158,7 +168,15 @@ function Booking({ destinationResult }) {
           <div className="hotels hidden">
             <div className="hotels-list">
               {hotelResults.map((hotel) => (
-                <div key={hotel.fsq_id} className="hotel-displayed">
+                <div
+                  key={hotel.fsq_id}
+                  className={`hotel-displayed ${
+                    hotel.website ? "website-included" : ""
+                  }`}
+                  onClick={() => {
+                    hotel.website && window.open(hotel.website, "_blank");
+                  }}
+                >
                   {hotel.photos && hotel.photos[0] ? (
                     <img
                       src={`${hotel.photos[0].prefix}300x300${hotel.photos[0].suffix}`}
