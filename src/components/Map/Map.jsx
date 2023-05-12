@@ -35,6 +35,8 @@ const Map = ({ departureResult, destinationResult }) => {
         zoom={5} // Change the zoom level as needed
         zoomControl={false}
         style={{ height: "100%", width: "100%", padding: 0 }}
+        touchZoom={true}
+        doubleClickZoom={false}
       >
         {/* Use map() instead of map() */}
         {refresh.map((item) => {
