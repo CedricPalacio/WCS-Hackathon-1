@@ -1,5 +1,8 @@
+@use "./src/styles/typography" as *;
+@use "./src/styles/colors" as *;
+
 .mapContent {
-  min-height: 80vh;
+  min-height: 90vh;
   width: 50vw;
 }
 
@@ -7,6 +10,8 @@ div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
   height: 35px;
   width: 140px;
   overflow: hidden;
+  background-color: $color-primary-600;
+  margin-bottom: 1rem;
   h2 {
     display: none;
   }
@@ -16,10 +21,17 @@ div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
   }
 }
 
-.leaflet-routing-container h3 {
-  font-size: 1px;
+#map
+  > div
+  > div.leaflet-control-container
+  > div.leaflet-top.leaflet-left
+  > div
+  > div
+  > div
+  > h3 {
+  font-size: 13px;
+  color: white;
 }
-
 .leaflet-retina .leaflet-control-layers-toggle {
   display: none;
 }
@@ -29,9 +41,15 @@ div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
   margin-top: 1rem;
 }
 
+.leaflet-routing-alt,
+.leaflet-routing-geocoders,
+.leaflet-routing-error {
+  padding: 0;
+}
+
 @media screen and (min-width: 768px) {
   .mapContent {
-    min-height: 50vh;
+    max-height: 100%;
     width: 50vw;
   }
 }

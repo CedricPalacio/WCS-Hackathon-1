@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TileLayer, MapContainer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.scss";
+// import "./assets/booking/geo-fill.svg";
 
 import RoutingControl from "./RoutingControl";
 
