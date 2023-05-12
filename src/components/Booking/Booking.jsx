@@ -28,7 +28,7 @@ function Booking({ destinationResult }) {
 
   const hotelsOptions = {
     method: "GET",
-    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=RATING&limit=5`,
+    url: `https://api.foursquare.com/v3/places/search?ll=${destinationResult.coordinates[0]}%2C${destinationResult.coordinates[1]}&radius=5000&categories=19014&fields=rating%2Cdescription%2Clocation%2Cfsq_id%2Cname%2Ctel%2Cphotos%2Cstats%2Cwebsite&sort=POPULARITY&limit=5`,
     headers: {
       accept: "application/json",
       Authorization: import.meta.env.VITE_APP_FOURSQUARE_API_KEY,
@@ -157,6 +157,12 @@ function Booking({ destinationResult }) {
                       </p>
                     </div>
                   </div>
+                  {restaurant.website && (
+                    <button className="website-button">
+                      En savoir plus
+                      <i className="bi bi-chevron-right" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
@@ -200,6 +206,12 @@ function Booking({ destinationResult }) {
                       <p>{hotel.stats && hotel.stats.total_ratings}</p>
                     </div>
                   </div>
+                  {hotel.website && (
+                    <button className="website-button">
+                      En savoir plus
+                      <i className="bi bi-chevron-right" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
