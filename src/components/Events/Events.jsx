@@ -94,6 +94,13 @@ function Events({ destinationResult }) {
                       <p>{landmark.stats && landmark.stats.total_ratings}</p>
                     </div>
                   </div>
+                  {/* if contains website, displays button */}
+                  {landmark.website && (
+                    <button className="website-button">
+                      En savoir plus
+                      <i className="bi bi-chevron-right" />
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
