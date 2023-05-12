@@ -11,15 +11,11 @@ const maps = {
 
 const Map = ({ departureResult, destinationResult }) => {
   const [map, setMap] = useState(null);
-  const [distance, setDistance] = useState(null);
 
-  const handleRoutesFound = (e) => {
-    const route = e.routes[0];
-    const distanceInKm = route.summary.totalDistance / 1000;
-    setDistance(distanceInKm);
-  };
+  const refresh = [{ departureResult, destinationResult }];
 
-  // console.log(distanceInKm);
+  console.log(refresh);
+
   return (
     <>
       <div className="mapContent" id="map">
@@ -34,18 +30,16 @@ const Map = ({ departureResult, destinationResult }) => {
             start={departureResult.coordinates}
             end={destinationResult.coordinates}
             color={"#0d9488"}
-            onRoutesFound={handleRoutesFound}
           />
           <LayersControl position="topright">
             <LayersControl.BaseLayer checked name="Map">
               <TileLayer
-                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                attribution="Touriosity"
                 url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
               />
             </LayersControl.BaseLayer>
           </LayersControl>
         </MapContainer>
-        <div>{distance && <p>Distance: {distance} km</p>}</div>
       </div>
     </>
   );

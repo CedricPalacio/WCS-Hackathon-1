@@ -1,16 +1,9 @@
 .mapContent {
-  height: 50vh;
-  width: 50vw;
-  border: 2px solid red;
+  height: 80vh;
+  width: 80vw;
 }
 
-#root
-  > div
-  > div.mapContent
-  > div
-  > div.leaflet-control-container
-  > div.leaflet-top.leaflet-left
-  > div {
+div.leaflet-control-container > div.leaflet-top.leaflet-left > div {
   height: 35px;
   width: 140px;
   overflow: hidden;
@@ -34,4 +27,11 @@
   margin: 0.5rem;
   margin-bottom: 2rem;
   margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .mapContent {
+    height: 50vh;
+    width: 50vw;
+  }
 }
