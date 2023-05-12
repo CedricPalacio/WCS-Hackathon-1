@@ -9,35 +9,22 @@ import IconsLinks from "../../components/IconsLinks/IconsLinks";
 import ScrollToTopButton from "../../components/ToTopButton/ScrollToTopButton";
 import "./Results.scss";
 
-function Results({
-  setDepartureResult,
-  setDestinationResult,
-  departureResult,
-  destinationResult,
-}) {
-  return (
-    <div id="results">
-      <NavBar
-        setDepartureResult={setDepartureResult}
-        setDestinationResult={setDestinationResult}
-        departureResult={departureResult}
-        destinationResult={destinationResult}
-      />
+function Results({ setDepartureResult, setDestinationResult, departureResult, destinationResult }) {
+    return (
+        <div id="results">
+            <NavBar setDepartureResult={setDepartureResult} setDestinationResult={setDestinationResult} departureResult={departureResult} destinationResult={destinationResult} />
 
-      <div className="container">
-        <IconsLinks />
-        <Booking destinationResult={destinationResult} />
-        <Events destinationResult={destinationResult} />
-        <Map
-          departureResult={departureResult}
-          destinationResult={destinationResult}
-        />
-        <Weather destinationResult={destinationResult} />
-      </div>
+            <div className="container">
+                <IconsLinks />
+                <Map departureResult={departureResult} destinationResult={destinationResult} />
+                <Weather destinationResult={destinationResult} />
+                <Booking destinationResult={destinationResult} />
+                <Events destinationResult={destinationResult} />
+            </div>
 
-      <ScrollToTopButton />
-    </div>
-  );
+            <ScrollToTopButton />
+        </div>
+    );
 }
 
 export default Results;
