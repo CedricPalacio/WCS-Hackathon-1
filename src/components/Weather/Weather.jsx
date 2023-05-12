@@ -38,173 +38,234 @@ function Weather() {
         <div className="weatherNowCity">
           <h4>Météo Actuelle</h4>
           <img src={cityWeather.current.condition.icon} alt="icon weather" />
-          <div className="tempRainWindNow">
-            <p>
-              Température actuelle : {cityWeather.current.temp_c}°C /{" "}
-              {cityWeather.current.temp_f}°F
-            </p>
-            <p>
-              Précipitations :{" "}
-              {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}%{" "}
-            </p>
-            <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
+          <div className="mainDataWeatherCity">
+            <div className="tempRainWindNow">
+              <p>Température: {cityWeather.current.temp_c}°C </p>
+              <p>
+                Précipitations :{" "}
+                {cityWeather.forecast.forecastday[0].day.daily_chance_of_rain}%{" "}
+              </p>{" "}
+              <p>Vent : {speedWindKmH(cityWeather.current.wind_mph)} km/h </p>
+            </div>{" "}
+            <div className="sunriseSunsetDay">
+              <div className="logoTextsunrise">
+                <i class="bi bi-sunrise"></i>
+                <p>{cityWeather.forecast.forecastday[0].astro.sunrise}</p>
+              </div>
+              <div className="logoTextsunset">
+                <i className="bi bi-sunset"></i>
+                <p> {cityWeather.forecast.forecastday[0].astro.sunset}</p>
+              </div>
+            </div>
           </div>
-          <div className="sunriseSunsetDay">
-            <p>
-              Lever du soleil :
-              {cityWeather.forecast.forecastday[0].astro.sunrise}
-            </p>
-            <p>
-              Coucher du soleil :
-              {cityWeather.forecast.forecastday[0].astro.sunset}
-            </p>
+        </div>
+        <div className="weatherAllDaysCity">
+          <div className="weatherDayCity">
+            <h4>Matinée</h4>
+            <div className="iconThermoAndText">
+              <i class="bi bi-thermometer-half"></i>
+              <p>{cityWeather.forecast.forecastday[0].hour[9].temp_c}</p>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}%{" "}
+              </p>
+            </div>
+          </div>
+          <div className="weatherDayCity">
+            <h4>Après-midi</h4>
+            <div className="iconThermoAndText">
+              <i class="bi bi-thermometer-half"></i>
+              <p>{cityWeather.forecast.forecastday[0].hour[15].temp_c}</p>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}%{" "}
+              </p>
+            </div>
+          </div>
+          <div className="weatherDayCity">
+            <h4>Soirée</h4>
+            <div className="iconThermoAndText">
+              <i class="bi bi-thermometer-half"></i>
+              <p>{cityWeather.forecast.forecastday[0].hour[23].temp_c}</p>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}%{" "}
+              </p>
+            </div>
           </div>
         </div>
-        <div className="weatherDayCity">
-          <h4>Ce matin</h4>
-          <p>
-            Température : {cityWeather.forecast.forecastday[0].hour[9].temp_c}°C
-            / {cityWeather.forecast.forecastday[0].hour[9].temp_f}°F
-          </p>
-          <p>
-            Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].hour[9].chance_of_rain}%{" "}
-          </p>
-        </div>
-        <div className="weatherDayCity">
-          <h4>Cet après-midi</h4>
-          <p>
-            Température : {cityWeather.forecast.forecastday[0].hour[15].temp_c}
-            °C / {cityWeather.forecast.forecastday[0].hour[15].temp_f}°F
-          </p>
-          <p>
-            Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].hour[15].chance_of_rain}%{" "}
-          </p>
-        </div>
-        <div className="weatherDayCity">
-          <h4>Ce soir</h4>
-          <p>
-            Température : {cityWeather.forecast.forecastday[0].hour[23].temp_c}
-            °C / {cityWeather.forecast.forecastday[0].hour[23].temp_f}°F
-          </p>
-          <p>
-            Précipitations :{" "}
-            {cityWeather.forecast.forecastday[0].hour[23].chance_of_rain}%{" "}
-          </p>
-        </div>
-        <div className="weatherNextDay">
-          <div>
-            <h4> Météo {cityWeather.forecast.forecastday[1].date}</h4>
+        <div className="weatherAllNextDays">
+          <h4>Météo des prochains jours</h4>
+          <div className="weatherNextDay">
+            {/* <h4>
+              {" "}
+              {cityWeather.forecast.forecastday[1].date
+                .split("-")
+                .reverse()
+                .join("/")}
+            </h4> */}
+            {/* transform date from "2023-05-12" like into "12/05" */}
+            <h4>
+              {cityWeather.forecast.forecastday[1].date
+                .split("-")
+                .reverse()
+                .join("/")
+                .slice(0, -5)}
+            </h4>
+
             <img
               src={cityWeather.forecast.forecastday[1].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[1].day.mintemp_c}°C</p>
-            <p>T° max :{cityWeather.forecast.forecastday[1].day.maxtemp_c}°C</p>
-            <p>
-              Précipitations :{" "}
-              {cityWeather.forecast.forecastday[1].day.daily_chance_of_rain}%
-            </p>
-            <p>
-              Vent :{" "}
-              {speedWindKmH(
-                cityWeather.forecast.forecastday[1].day.maxwind_mph
-              )}
-              km/h{" "}
-            </p>
-            <p>
-              Lever du soleil :{" "}
-              {cityWeather.forecast.forecastday[1].astro.sunrise}
-            </p>
-            <p>
-              Coucher du soleil :
-              {cityWeather.forecast.forecastday[1].astro.sunset}
-            </p>
+            <div className="temperatureMinMax">
+              <i class="bi bi-thermometer-half"></i>
+              <div className="temMintempMax">
+                <p className="tempMin">
+                  {cityWeather.forecast.forecastday[1].day.mintemp_c}°C /
+                </p>{" "}
+                <p className="tempMax">
+                  {cityWeather.forecast.forecastday[1].day.maxtemp_c}°C
+                </p>
+              </div>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[1].day.daily_chance_of_rain}%
+              </p>
+            </div>
+            <div className="logoAndTextWind">
+              <i class="bi bi-wind"></i>
+              <p>
+                {speedWindKmH(
+                  cityWeather.forecast.forecastday[1].day.maxwind_mph
+                )}
+                km/h{" "}
+              </p>
+            </div>
           </div>
-          <div>
-            <h4> Météo {cityWeather.forecast.forecastday[2].date}</h4>
+          <div className="weatherNextDay">
+            <h4>
+              {cityWeather.forecast.forecastday[2].date
+                .split("-")
+                .reverse()
+                .join("/")
+                .slice(0, -5)}
+            </h4>
             <img
               src={cityWeather.forecast.forecastday[2].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[2].day.mintemp_c}°C</p>
-            <p>T° max :{cityWeather.forecast.forecastday[2].day.maxtemp_c}°C</p>
-            <p>
-              Précipitations :{" "}
-              {cityWeather.forecast.forecastday[2].day.daily_chance_of_rain}%
-            </p>
-            <p>
-              Vent :{" "}
-              {speedWindKmH(
-                cityWeather.forecast.forecastday[2].day.maxwind_mph
-              )}
-              km/h{" "}
-            </p>
-            <p>
-              Lever du soleil :{" "}
-              {cityWeather.forecast.forecastday[2].astro.sunrise}
-            </p>
-            <p>
-              Coucher du soleil :
-              {cityWeather.forecast.forecastday[2].astro.sunset}
-            </p>
+            <div className="temperatureMinMax">
+              <i class="bi bi-thermometer-half"></i>
+              <div className="temMintempMax">
+                <p className="tempMin">
+                  {cityWeather.forecast.forecastday[2].day.mintemp_c}°C /
+                </p>{" "}
+                <p className="tempMax">
+                  {cityWeather.forecast.forecastday[2].day.maxtemp_c}°C
+                </p>
+              </div>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[2].day.daily_chance_of_rain}%
+              </p>
+            </div>
+            <div className="logoAndTextWind">
+              <i class="bi bi-wind"></i>
+              <p>
+                {speedWindKmH(
+                  cityWeather.forecast.forecastday[2].day.maxwind_mph
+                )}
+                km/h{" "}
+              </p>
+            </div>
           </div>
-          <div>
-            <h4> Météo {cityWeather.forecast.forecastday[3].date}</h4>
+          <div className="weatherNextDay">
+            <h4>
+              {cityWeather.forecast.forecastday[3].date
+                .split("-")
+                .reverse()
+                .join("/")
+                .slice(0, -5)}
+            </h4>
             <img
               src={cityWeather.forecast.forecastday[3].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[3].day.mintemp_c}°C</p>
-            <p>T° max :{cityWeather.forecast.forecastday[3].day.maxtemp_c}°C</p>
-            <p>
-              Précipitations :{" "}
-              {cityWeather.forecast.forecastday[3].day.daily_chance_of_rain}%
-            </p>
-            <p>
-              Vent :{" "}
-              {speedWindKmH(
-                cityWeather.forecast.forecastday[3].day.maxwind_mph
-              )}
-              km/h{" "}
-            </p>
-            <p>
-              Lever du soleil :{" "}
-              {cityWeather.forecast.forecastday[3].astro.sunrise}
-            </p>
-            <p>
-              Coucher du soleil :
-              {cityWeather.forecast.forecastday[3].astro.sunset}
-            </p>
+            <div className="temperatureMinMax">
+              <i class="bi bi-thermometer-half"></i>
+              <div className="temMintempMax">
+                <p className="tempMin">
+                  {cityWeather.forecast.forecastday[3].day.mintemp_c}°C /
+                </p>{" "}
+                <p className="tempMax">
+                  {cityWeather.forecast.forecastday[3].day.maxtemp_c}°C
+                </p>
+              </div>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[3].day.daily_chance_of_rain}%
+              </p>
+            </div>
+            <div className="logoAndTextWind">
+              <i class="bi bi-wind"></i>
+              <p>
+                {speedWindKmH(
+                  cityWeather.forecast.forecastday[3].day.maxwind_mph
+                )}
+                km/h{" "}
+              </p>
+            </div>
           </div>
-          <div>
-            <h4> Météo {cityWeather.forecast.forecastday[4].date}</h4>
+          <div className="weatherNextDay">
+            <h4>
+              {cityWeather.forecast.forecastday[4].date
+                .split("-")
+                .reverse()
+                .join("/")
+                .slice(0, -5)}
+            </h4>
             <img
               src={cityWeather.forecast.forecastday[4].day.condition.icon}
               alt=""
             />
-            <p>T° min :{cityWeather.forecast.forecastday[4].day.mintemp_c}°C</p>
-            <p>T° max :{cityWeather.forecast.forecastday[4].day.maxtemp_c}°C</p>
-            <p>
-              Précipitations :{" "}
-              {cityWeather.forecast.forecastday[4].day.daily_chance_of_rain}%
-            </p>
-            <p>
-              Vent :{" "}
-              {speedWindKmH(
-                cityWeather.forecast.forecastday[4].day.maxwind_mph
-              )}
-              km/h{" "}
-            </p>
-            <p>
-              Lever du soleil :{" "}
-              {cityWeather.forecast.forecastday[4].astro.sunrise}
-            </p>
-            <p>
-              Coucher du soleil :
-              {cityWeather.forecast.forecastday[4].astro.sunset}
-            </p>
+            <div className="temperatureMinMax">
+              <i class="bi bi-thermometer-half"></i>
+              <div className="temMintempMax">
+                <p className="tempMin">
+                  {cityWeather.forecast.forecastday[4].day.mintemp_c}°C /
+                </p>{" "}
+                <p className="tempMax">
+                  {cityWeather.forecast.forecastday[4].day.maxtemp_c}°C
+                </p>
+              </div>
+            </div>
+            <div className="iconRainAndText">
+              <i class="bi bi-umbrella"></i>
+              <p>
+                {cityWeather.forecast.forecastday[4].day.daily_chance_of_rain}%
+              </p>
+            </div>
+            <div className="logoAndTextWind">
+              <i class="bi bi-wind"></i>
+              <p>
+                {speedWindKmH(
+                  cityWeather.forecast.forecastday[4].day.maxwind_mph
+                )}
+                km/h{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 @use "./src/styles/typography" as *;
+@use "./src/styles/colors" as *;
+
 
 #weather{
     h2{
@@ -14,14 +16,124 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 20px 0px;
         
         h4{
-            @include text("md")
+            @include text("md");
         }
 
         img{
             height: 80px;
             width: 80px;
         }
+        .mainDataWeatherCity{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+
+            .tempRainWindNow{
+                display: flex;
+                flex-direction: column;
+                p{
+                    line-height: 35px;
+                }
+
+        
+            }
+            .sunriseSunsetDay{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .logoTextsunrise{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .bi-sunrise{
+                        font-size:xxx-large;
+                    }
+                }
+                .logoTextsunset{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    .bi-sunset{
+                        font-size:xxx-large;
+                    }
+                }
+                
+    
+            }
+        }
+    }
+
+    .weatherAllDaysCity{
+        display: flex;
+        flex-direction: wrap;
+        justify-content: space-around;
+        margin-bottom: 30px;
+
+        .weatherDayCity{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .iconThermoAndText{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                p{
+                    padding-left: 5px;
+                }
+            }
+            .iconRainAndText{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                p{
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+    .weatherAllNextDays{
+        .weatherNextDay{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                @include text("sm");
+            }
+            .temperatureMinMax{
+                display: flex;
+                flex-direction: column; 
+                align-items: center;
+                .temMintempMax{
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            .iconRainAndText{
+                display: flex;
+                flex-direction: column; 
+                align-items: center;
+            }
+            .logoAndTextWind{
+                display: flex;
+                flex-direction: column; 
+                align-items: center;
+
+            }
+
+          
+        }
+        
     }
 }
